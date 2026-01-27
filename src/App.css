@@ -147,3 +147,30 @@ button:focus-visible {
 .download-button:hover {
   background-color: #535bf2;
 }
+
+/* New Footer and Data Management Styles */
+.App-footer {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: #888;
+  border-top: 1px solid var(--color-surface);
+  width: 100%;
+}
+
+.data-management {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.danger-button {
+  background-color: #4d2424;
+  color: #ffc0c0;
+}
+
+.danger-button:hover {
+  border-color: var(--color-incorrect);
+  background-color: #6a2a2a;
+}

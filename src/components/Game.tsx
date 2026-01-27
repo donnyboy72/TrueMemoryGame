@@ -3,7 +3,6 @@
 import React from 'react';
 import { useGameLogic } from '../hooks/useGameLogic';
 import GameGrid from './GameGrid';
-import { logger } from '../lib/DataLogger';
 
 const GRID_SIZE = 9; // 3x3 grid
 
@@ -37,6 +36,10 @@ const Game: React.FC = () => {
       setShowResults(true);
     }
   };
+
+  const handlePlayAgain = () => {
+    window.location.reload();
+  }
 
   const renderGameStatus = () => {
     switch (status) {
@@ -82,20 +85,12 @@ const Game: React.FC = () => {
   }
 
   if (showResults) {
-    const finalLog = logger.exportToJSON();
     return (
       <div className="results-screen">
         <h2>Session Complete</h2>
-        <p>Thank you for participating.</p>
-        <h3>Session Data Log:</h3>
-        <pre className="json-output">{finalLog}</pre>
-        <a
-          href={`data:text/json;charset=utf-f8,${encodeURIComponent(finalLog)}`}
-          download={`session-log-${logger.getSessionLog()?.session_id}.json`}
-          className="download-button"
-        >
-          Download Log
-        </a>
+        <p>Your session has been automatically saved.</p>
+        <p>You can export all your session data from the main screen.</p>
+        <button onClick={handlePlayAgain} style={{ marginTop: '1rem' }}>Play Again</button>
       </div>
     );
   }

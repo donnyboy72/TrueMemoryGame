@@ -99,6 +99,7 @@ export const useGameLogic = (gridSize: number) => {
   };
 
   const finishGame = () => {
+    logger.endSession();
     setStatus('finished');
   }
 
