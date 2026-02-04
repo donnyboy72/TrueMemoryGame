@@ -3,7 +3,9 @@
 import React from 'react';
 import { useGameLogic } from '../hooks/useGameLogic';
 import GameGrid from './GameGrid';
-import { classifySession, ClassificationResult } from '../lib/Classification';
+import { classifySession } from '../lib/Classification';
+import type { ClassificationResult } from '../lib/Classification'; // Fix: Import ClassificationResult as a type due to verbatimModuleSyntax
+
 
 const GRID_SIZE = 25; // 5x5 grid
 

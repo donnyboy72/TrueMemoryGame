@@ -6,6 +6,7 @@ import { logger } from './lib/DataLogger';
 import './App.css';
 
 function App() {
+  console.log("App.tsx rendering");
 
   const handleExport = () => {
     const sessions = logger.getAllSessions();

@@ -1,7 +1,8 @@
 // src/hooks/useGameLogic.ts
 
 import { useState, useEffect, useCallback } from 'react';
-import { logger, StoredSession } from '../lib/DataLogger';
+import { logger } from '../lib/DataLogger';
+import type { StoredSession } from '../lib/DataLogger';
 
 export type GameStatus = 'setup' | 'sequence' | 'input' | 'correct' | 'incorrect' | 'finished';
 
