@@ -10,6 +10,7 @@ export type TrialData = {
   correct_order: number[];
   accuracy: 0 | 1;
   reaction_times: number[];
+  spatial_distance_error: number[];
   total_trial_time: number;
 };
 
@@ -20,7 +21,6 @@ export type SessionLog = {
   start_time: number;
   end_time?: number;
   session_length?: number;
-  rest_before_session: 'well-rested' | 'somewhat-rested' | 'tired';
   trials: TrialData[];
 };
 
@@ -32,7 +32,10 @@ export type StoredSession = {
   number_of_trials: number;
   max_sequence_length: number;
   average_accuracy: number;
+  average_reaction_time_ms: number; // Added for classification
+  average_spatial_distance_error: number; // Added for classification
   all_reaction_times_ms: number[][];
+  all_spatial_distance_errors: number[][];
   // Renamed from session_length
   total_task_completion_time_ms: number;
   // Kept for clarity, same as above
@@ -47,13 +50,12 @@ class DataLogger {
 
   // --- Session Lifecycle ---
 
-  public startSession(rest_before_session: 'well-rested' | 'somewhat-rested' | 'tired'): string {
+  public startSession(): string {
     const sessionId = uuidv4();
     this.sessionLog = {
       session_id: sessionId,
       task_type: "memory_sequence",
       start_time: Date.now(),
-      rest_before_session,
       trials: [],
     };
     console.log(`[DataLogger] Session started: ${sessionId}`);
@@ -94,6 +96,12 @@ class DataLogger {
   private transformSession(session: SessionLog): StoredSession {
     const totalTrials = session.trials.length;
     const totalAccuracy = session.trials.reduce((sum, trial) => sum + trial.accuracy, 0);
+    
+    const allReactionTimes = session.trials.flatMap(t => t.reaction_times);
+    const totalReactionTime = allReactionTimes.reduce((sum, rt) => sum + rt, 0);
+    
+    const allSpatialDistances = session.trials.flatMap(t => t.spatial_distance_error);
+    const totalSpatialDistance = allSpatialDistances.reduce((sum, err) => sum + err, 0);
 
     return {
       session_id: session.session_id,
@@ -101,7 +109,10 @@ class DataLogger {
       number_of_trials: totalTrials,
       max_sequence_length: Math.max(...session.trials.map(t => t.sequence_length)),
       average_accuracy: totalTrials > 0 ? totalAccuracy / totalTrials : 0,
+      average_reaction_time_ms: allReactionTimes.length > 0 ? totalReactionTime / allReactionTimes.length : 0,
+      average_spatial_distance_error: allSpatialDistances.length > 0 ? totalSpatialDistance / allSpatialDistances.length : 0,
       all_reaction_times_ms: session.trials.map(t => t.reaction_times),
+      all_spatial_distance_errors: session.trials.map(t => t.spatial_distance_error),
       total_task_completion_time_ms: session.session_length || 0,
       session_length_ms: session.session_length || 0,
       timestamp_relative_ms: session.end_time || Date.now(),

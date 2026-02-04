@@ -29,8 +29,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, var(--tile-size));
-  grid-template-rows: repeat(3, var(--tile-size));
+  grid-template-columns: repeat(5, var(--tile-size));
+  grid-template-rows: repeat(5, var(--tile-size));
   gap: var(--grid-gap);
   background-color: var(--color-background);
   padding: var(--grid-gap);

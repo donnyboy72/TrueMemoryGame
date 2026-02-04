@@ -1,13 +1,14 @@
 // src/hooks/useGameLogic.ts
 
 import { useState, useEffect, useCallback } from 'react';
-import { logger } from '../lib/DataLogger';
+import { logger, StoredSession } from '../lib/DataLogger';
 
 export type GameStatus = 'setup' | 'sequence' | 'input' | 'correct' | 'incorrect' | 'finished';
 
 const BASE_SEQUENCE_LENGTH = 3;
-const SEQUENCE_DELAY = 750; // ms between sequence items lighting up
+const SEQUENCE_DELAY = 850; // ms between sequence items lighting up
 const INPUT_TIMEOUT = 5000; // ms for the user to complete the whole sequence
+const GRID_DIMENSION = 5; // 5x5 grid
 
 export const useGameLogic = (gridSize: number) => {
   const [status, setStatus] = useState<GameStatus>('setup');
@@ -17,8 +18,17 @@ export const useGameLogic = (gridSize: number) => {
   const [trialNumber, setTrialNumber] = useState(1);
   
   const [reactionTimes, setReactionTimes] = useState<number[]>([]);
+  const [spatialDistanceErrors, setSpatialDistanceErrors] = useState<number[]>([]);
   const [trialStartTime, setTrialStartTime] = useState<number>(0);
   const [lastTapTime, setLastTapTime] = useState<number>(0);
+
+  // Helper to convert index to coordinates
+  const getCoords = (index: number) => {
+    return {
+      row: Math.floor(index / GRID_DIMENSION),
+      col: index % GRID_DIMENSION,
+    };
+  };
 
   // Timer for user input timeout
   useEffect(() => {
@@ -33,8 +43,8 @@ export const useGameLogic = (gridSize: number) => {
     return () => clearTimeout(timer);
   }, [status]);
 
-  const startNewSession = useCallback((rest: 'well-rested' | 'somewhat-rested' | 'tired') => {
-    logger.startSession(rest);
+  const startNewSession = useCallback(() => {
+    logger.startSession();
     setStatus('sequence');
     setTrialNumber(1);
     setLevel(1);
@@ -46,6 +56,7 @@ export const useGameLogic = (gridSize: number) => {
     setSequence(newSequence);
     setUserSequence([]);
     setReactionTimes([]);
+    setSpatialDistanceErrors([]);
     setTrialStartTime(Date.now());
   };
 
@@ -56,6 +67,13 @@ export const useGameLogic = (gridSize: number) => {
     setReactionTimes(prev => [...prev, newReactionTime]);
     setLastTapTime(Date.now());
     
+    // Calculate spatial distance error using Manhattan distance
+    const expectedTileIndex = sequence[userSequence.length];
+    const expectedCoords = getCoords(expectedTileIndex);
+    const clickedCoords = getCoords(tileIndex);
+    const distance = Math.abs(expectedCoords.row - clickedCoords.row) + Math.abs(expectedCoords.col - clickedCoords.col);
+    setSpatialDistanceErrors(prev => [...prev, distance]);
+
     const newUserSequence = [...userSequence, tileIndex];
     setUserSequence(newUserSequence);
 
@@ -81,6 +99,7 @@ export const useGameLogic = (gridSize: number) => {
       correct_order: sequence,
       accuracy: isCorrect ? 1 : 0,
       reaction_times: reactionTimes,
+      spatial_distance_error: spatialDistanceErrors,
       total_trial_time: Date.now() - trialStartTime,
     });
   }
@@ -98,9 +117,10 @@ export const useGameLogic = (gridSize: number) => {
     setStatus('sequence');
   };
 
-  const finishGame = () => {
-    logger.endSession();
+  const finishGame = (): StoredSession | null => {
+    const session = logger.endSession();
     setStatus('finished');
+    return session;
   }
 
   return {

@@ -3,8 +3,9 @@
 import React from 'react';
 import { useGameLogic } from '../hooks/useGameLogic';
 import GameGrid from './GameGrid';
+import { classifySession, ClassificationResult } from '../lib/Classification';
 
-const GRID_SIZE = 9; // 3x3 grid
+const GRID_SIZE = 25; // 5x5 grid
 
 const Game: React.FC = () => {
   const {
@@ -21,9 +22,10 @@ const Game: React.FC = () => {
 
   const [sessionStarted, setSessionStarted] = React.useState(false);
   const [showResults, setShowResults] = React.useState(false);
+  const [classificationResult, setClassificationResult] = React.useState<ClassificationResult | null>(null);
 
-  const handleStart = (restLevel: 'well-rested' | 'somewhat-rested' | 'tired') => {
-    startNewSession(restLevel);
+  const handleStart = () => {
+    startNewSession();
     setSessionStarted(true);
   };
 
@@ -32,7 +34,15 @@ const Game: React.FC = () => {
       advanceToNextTrial();
     } else if (status === 'incorrect') {
       // End the game on any incorrect answer
-      finishGame();
+      const session = finishGame();
+      if (session) {
+        const result = classifySession({
+          mean_accuracy: session.average_accuracy,
+          mean_reaction_time_ms: session.average_reaction_time_ms,
+          mean_spatial_distance_error: session.average_spatial_distance_error
+        });
+        setClassificationResult(result);
+      }
       setShowResults(true);
     }
   };
@@ -46,7 +56,7 @@ const Game: React.FC = () => {
       case 'sequence':
         return <p>Watch carefully...</p>;
       case 'input':
-        return <p>Your turn! Level: {level}</p>;
+        return <p>Level: {level}</p>;
       case 'correct':
         return (
           <div>
@@ -74,11 +84,8 @@ const Game: React.FC = () => {
         <p>Click the tiles in the same order to reproduce the sequence.</p>
         <p>The game ends if you make a mistake.</p>
         <hr />
-        <h3>Before you begin, how rested do you feel?</h3>
-        <div className="rest-options">
-          <button onClick={() => handleStart('well-rested')}>Well-Rested</button>
-          <button onClick={() => handleStart('somewhat-rested')}>Somewhat Rested</button>
-          <button onClick={() => handleStart('tired')}>Tired</button>
+        <div className="start-options">
+          <button onClick={handleStart}>Start Game</button>
         </div>
       </div>
     );
@@ -88,8 +95,14 @@ const Game: React.FC = () => {
     return (
       <div className="results-screen">
         <h2>Session Complete</h2>
-        <p>Your session has been automatically saved.</p>
-        <p>You can export all your session data from the main screen.</p>
+        {classificationResult && (
+          <div className="classification-results">
+            <h3>Fatigue Classification: {classificationResult.group.replace('_', ' ')}</h3>
+            <p><strong>Explanation:</strong> {classificationResult.explanation}</p>
+            <p><strong>Suggestion:</strong> {classificationResult.suggestion}</p>
+          </div>
+        )}
+        <p>Your session has been automatically saved. You can export all your session data from the main screen.</p>
         <button onClick={handlePlayAgain} style={{ marginTop: '1rem' }}>Play Again</button>
       </div>
     );

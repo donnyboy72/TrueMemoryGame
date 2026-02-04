@@ -15,7 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --tile-size: 100px;
+  --tile-size: 70px;
   --grid-gap: 15px;
   --border-radius: 12px;
   --transition-speed: 0.2s;
