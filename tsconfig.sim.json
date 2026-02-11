@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist-sim", // Output to a separate directory
+    "module": "NodeNext", // Use NodeNext for ESM compatibility
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": false // Ensure it emits output
+  },
+  "include": [
+    "simulation/**/*.ts"
+  ]
+}
