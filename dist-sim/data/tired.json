@@ -1,0 +1,71 @@
+{
+  "category": "tired",
+  "samples": [
+    {
+      "reactionTime": 584,
+      "accuracy": 0.85,
+      "confidence": 0.63,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 531,
+      "accuracy": 0.77,
+      "confidence": 0.64,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 510,
+      "accuracy": 0.69,
+      "confidence": 1,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 521,
+      "accuracy": 0.86,
+      "confidence": 0.73,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 549,
+      "accuracy": 0.87,
+      "confidence": 0.84,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 605,
+      "accuracy": 0.66,
+      "confidence": 0.89,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 654,
+      "accuracy": 0.67,
+      "confidence": 0.64,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 474,
+      "accuracy": 0.76,
+      "confidence": 0.65,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 488,
+      "accuracy": 0.74,
+      "confidence": 0.87,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    },
+    {
+      "reactionTime": 525,
+      "accuracy": 0.75,
+      "confidence": 0.7,
+      "timestamp": "2026-02-16T01:50:52.642Z"
+    }
+  ],
+  "statistics": {
+    "meanReactionTime": 544.1,
+    "stdDevReactionTime": 52.63,
+    "meanAccuracy": 0.76,
+    "meanConfidence": 0.76
+  }
+}
