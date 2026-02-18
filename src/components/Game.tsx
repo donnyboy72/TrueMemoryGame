@@ -7,18 +7,19 @@ import { classifySession } from '../lib/Classification';
 import type { ClassificationResult } from '../lib/Classification'; // Fix: Import ClassificationResult as a type due to verbatimModuleSyntax
 
 
-const GRID_SIZE = 25; // 5x5 grid
+const GRID_SIZE = 16; // 4x4 grid
 
 const Game: React.FC = () => {
   const {
     status,
     level,
     sequence,
+    isUserTurn,
     startNewSession,
     handleTileClick,
     advanceToNextTrial,
     finishGame,
-    setStatus,
+    startInputPhase,
     SEQUENCE_DELAY
   } = useGameLogic(GRID_SIZE);
 
@@ -58,7 +59,7 @@ const Game: React.FC = () => {
       case 'sequence':
         return <p>Watch carefully...</p>;
       case 'input':
-        return <p>Level: {level}</p>;
+        return isUserTurn ? <p>Your turn! Level: {level}</p> : <p>Get ready...</p>;
       case 'correct':
         return (
           <div>
@@ -118,9 +119,10 @@ const Game: React.FC = () => {
       <GameGrid
         gridSize={GRID_SIZE}
         sequence={sequence}
-        status={status as any} // The grid only cares about a subset of statuses
+        status={status as any}
+        isUserTurn={isUserTurn}
         onTileClick={handleTileClick}
-        onSequenceComplete={() => setStatus('input')}
+        onSequenceComplete={startInputPhase}
         sequenceDelay={SEQUENCE_DELAY}
       />
     </div>

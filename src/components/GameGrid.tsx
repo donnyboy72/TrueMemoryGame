@@ -6,6 +6,7 @@ interface GameGridProps {
   gridSize: number;
   sequence: number[];
   status: 'sequence' | 'input' | 'correct' | 'incorrect';
+  isUserTurn: boolean;
   onTileClick: (index: number) => void;
   onSequenceComplete: () => void;
   sequenceDelay: number;
@@ -15,6 +16,7 @@ const GameGrid: React.FC<GameGridProps> = ({
   gridSize,
   sequence,
   status,
+  isUserTurn,
   onTileClick,
   onSequenceComplete,
   sequenceDelay
@@ -63,10 +65,15 @@ const GameGrid: React.FC<GameGridProps> = ({
   return (
     <div className="grid-container">
       {Array.from({ length: gridSize }).map((_, index) => (
-        <div
+        <button
           key={index}
           className={getTileClass(index)}
-          onClick={() => onTileClick(index)}
+          disabled={!isUserTurn}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onTileClick(index);
+          }}
         />
       ))}
     </div>

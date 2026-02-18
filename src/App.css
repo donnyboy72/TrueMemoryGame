@@ -29,8 +29,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, var(--tile-size));
-  grid-template-rows: repeat(5, var(--tile-size));
+  grid-template-columns: repeat(4, var(--tile-size));
+  grid-template-rows: repeat(4, var(--tile-size));
   gap: var(--grid-gap);
   background-color: var(--color-background);
   padding: var(--grid-gap);
@@ -46,6 +46,7 @@
   cursor: pointer;
   transition: all var(--transition-speed) ease;
   border: 2px solid transparent;
+  user-select: none;
 }
 
 .tile:hover {
