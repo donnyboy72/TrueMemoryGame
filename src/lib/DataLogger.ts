@@ -11,6 +11,7 @@ export type TrialData = {
   accuracy: 0 | 1;
   reaction_times: number[];
   spatial_distance_error: number[];
+  pixel_distance_error: number[];
   total_trial_time: number;
 };
 
@@ -34,8 +35,10 @@ export type StoredSession = {
   average_accuracy: number;
   average_reaction_time_ms: number; // Added for classification
   average_spatial_distance_error: number; // Added for classification
+  average_pixel_distance_error: number; // New: Pixel distance error (motor precision)
   all_reaction_times_ms: number[][];
   all_spatial_distance_errors: number[][];
+  all_pixel_distance_errors: number[][]; // New: Detailed pixel errors
   // Renamed from session_length
   total_task_completion_time_ms: number;
   // Kept for clarity, same as above
@@ -103,6 +106,9 @@ class DataLogger {
     const allSpatialDistances = session.trials.flatMap(t => t.spatial_distance_error);
     const totalSpatialDistance = allSpatialDistances.reduce((sum, err) => sum + err, 0);
 
+    const allPixelDistances = session.trials.flatMap(t => t.pixel_distance_error);
+    const totalPixelDistance = allPixelDistances.reduce((sum, err) => sum + err, 0);
+
     return {
       session_id: session.session_id,
       task_type: session.task_type,
@@ -111,8 +117,10 @@ class DataLogger {
       average_accuracy: totalTrials > 0 ? totalAccuracy / totalTrials : 0,
       average_reaction_time_ms: allReactionTimes.length > 0 ? totalReactionTime / allReactionTimes.length : 0,
       average_spatial_distance_error: allSpatialDistances.length > 0 ? totalSpatialDistance / allSpatialDistances.length : 0,
+      average_pixel_distance_error: allPixelDistances.length > 0 ? totalPixelDistance / allPixelDistances.length : 0,
       all_reaction_times_ms: session.trials.map(t => t.reaction_times),
       all_spatial_distance_errors: session.trials.map(t => t.spatial_distance_error),
+      all_pixel_distance_errors: session.trials.map(t => t.pixel_distance_error),
       total_task_completion_time_ms: session.session_length || 0,
       session_length_ms: session.session_length || 0,
       timestamp_relative_ms: session.end_time || Date.now(),

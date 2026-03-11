@@ -4,12 +4,13 @@ import React from 'react';
 import { useGameLogic } from '../hooks/useGameLogic';
 import GameGrid from './GameGrid';
 import { classifySession } from '../lib/Classification';
-import type { ClassificationResult } from '../lib/Classification'; // Fix: Import ClassificationResult as a type due to verbatimModuleSyntax
+import { saveUserSession } from '../lib/Auth';
+import type { ClassificationResult } from '../lib/Classification'; 
 
 
 const GRID_SIZE = 16; // 4x4 grid
 
-const Game: React.FC = () => {
+const Game: React.FC<{ userID: string }> = ({ userID }) => {
   const {
     status,
     level,
@@ -32,19 +33,28 @@ const Game: React.FC = () => {
     setSessionStarted(true);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (status === 'correct') {
       advanceToNextTrial();
     } else if (status === 'incorrect') {
       // End the game on any incorrect answer
       const session = finishGame();
       if (session) {
+        // 1. Classification
         const result = classifySession({
           mean_accuracy: session.average_accuracy,
           mean_reaction_time_ms: session.average_reaction_time_ms,
           mean_spatial_distance_error: session.average_spatial_distance_error
         });
         setClassificationResult(result);
+
+        // 2. Save to Server (HIPAA-safe)
+        try {
+          await saveUserSession(userID, session);
+          console.log("Session saved to server successfully.");
+        } catch (err) {
+          console.error("Failed to save session to server:", err);
+        }
       }
       setShowResults(true);
     }
@@ -57,19 +67,23 @@ const Game: React.FC = () => {
   const renderGameStatus = () => {
     switch (status) {
       case 'sequence':
-        return <p>Watch carefully...</p>;
+        return <p className="status-message status-watch">Watch carefully...</p>;
       case 'input':
-        return isUserTurn ? <p>Your turn! Level: {level}</p> : <p>Get ready...</p>;
+        return isUserTurn ? (
+          <p className="status-message status-turn">Your turn! Level: {level}</p>
+        ) : (
+          <p className="status-message status-ready">Get ready...</p>
+        );
       case 'correct':
         return (
-          <div>
+          <div className="status-message">
             <p className="feedback-correct">Correct!</p>
             <button onClick={handleNext}>Next Sequence</button>
           </div>
         );
       case 'incorrect':
         return (
-          <div>
+          <div className="status-message">
             <p className="feedback-incorrect">Incorrect. Game Over.</p>
             <button onClick={handleNext}>Show Results</button>
           </div>

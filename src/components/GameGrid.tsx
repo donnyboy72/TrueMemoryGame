@@ -7,7 +7,7 @@ interface GameGridProps {
   sequence: number[];
   status: 'sequence' | 'input' | 'correct' | 'incorrect';
   isUserTurn: boolean;
-  onTileClick: (index: number) => void;
+  onTileClick: (index: number, clickX: number, clickY: number) => void;
   onSequenceComplete: () => void;
   sequenceDelay: number;
 }
@@ -68,11 +68,12 @@ const GameGrid: React.FC<GameGridProps> = ({
         <button
           key={index}
           className={getTileClass(index)}
+          data-tile-index={index}
           disabled={!isUserTurn}
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            onTileClick(index);
+            onTileClick(index, e.clientX, e.clientY);
           }}
         />
       ))}
