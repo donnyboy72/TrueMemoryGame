@@ -270,3 +270,126 @@ This document tracks the reasoning, research basis, and technical justification 
 1.  **Validation Study:** Run a "controlled fatigue" study (e.g., test users at 9 AM vs. 11 PM) and use that data to replace the synthetic `summary.json`.
 2.  **Internal Consistency Metrics:** Calculate and report Cronbach's Alpha or Split-Half Reliability for the game metrics to prove they are consistent.
 3.  **Time-on-Task Analysis:** Analyze if RT slows down *within* a single 5-minute session (vigilance decrement), which is a much stronger indicator of fatigue than a simple session average.
+
+# Game Design & UX Research-Based Redesign
+
+## Feature: Grid Size (3x3 Baseline)
+
+### Original Design
+A fixed 4x4 grid (16 tiles).
+
+### Issue
+A 4x4 grid creates a high spatial cognitive load that may exceed the working memory capacity of impaired populations (e.g., TBI or elderly). Working memory is typically limited to 7±2 items, and spatial complexity in a 4x4 grid adds additional noise to the measurement of pure memory decay.
+
+### New Design
+Defaulted to a 3x3 grid (9 tiles), mirroring the standard Corsi block-tapping task used in neuropsychology.
+
+### Source of Decision
+- Cognitive / medical research (Corsi block-tapping task)
+- HCI best practice (Simplicity for baseline testing)
+
+### Reasoning
+A 3x3 grid provides a cleaner baseline for measuring spatial working memory. It reduces the "chance" of accidental correct hits while ensuring that the task is accessible to users with moderate cognitive impairment.
+
+### Expected Impact
+- Improved sensitivity to minor memory lapses.
+- Better accessibility for impaired populations.
+- More standardized comparison with existing cognitive literature.
+
+---
+
+## Feature: Tile Shape (Rounded Squares)
+
+### Original Design
+Perfect circles.
+
+### Issue
+Circles have less surface area than squares for the same bounding box, increasing the likelihood of "edge-misses" which log as spatial errors even if the user's motor intent was correct. They also lack clear spatial alignment cues in a grid layout.
+
+### New Design
+Rounded squares (8px border-radius).
+
+### Source of Decision
+- HCI best practice (Fitts's Law / Target Acquisition)
+- Visual perception (Spatial grouping)
+
+### Reasoning
+Squares maximize the active hit area within the grid cell, reducing motor noise in the "Pixel Distance Error" metric. Rounded corners maintain a modern aesthetic without sacrificing the functional benefits of the square's surface area.
+
+### Expected Impact
+- Lower motor noise in data.
+- Reduced frustration from "missed" taps on tile edges.
+- Clearer visual grouping of tiles.
+
+---
+
+## Feature: Animation Timing (Stimulus vs ISI)
+
+### Original Design
+A simple 1000ms interval where one tile lit up immediately after the previous one.
+
+### Issue
+Without an "Off" period (Inter-Stimulus Interval or ISI) between tiles, "visual persistence" can cause the sequences to blur together in the user's mind, especially during fatigue. This makes it unclear when one item ends and the next begins.
+
+### New Design
+Fixed Stimulus Duration (600ms) followed by an ISI (400ms), totaling a 1000ms duty cycle.
+
+### Source of Decision
+- Cognitive / medical research (Stimulus timing in memory tasks)
+- Visual perception (Temporal resolution)
+
+### Reasoning
+Explicitly separating the stimulus from the pause ensures that each sequence item is perceived as a discrete event. This reduces the cognitive load required to "parse" the sequence and focuses the task on memory retrieval.
+
+### Expected Impact
+- More accurate reaction time measurements.
+- Reduced perceptual errors.
+- Consistent stimulus intensity across trials.
+
+---
+
+## Feature: Static UI Targets (Removing Scaling)
+
+### Original Design
+Tiles scaled up by 5% on hover and 10% when lit.
+
+### Issue
+Changing the size of the target (scaling) during interaction violates the principles of consistent motor control measurement. If a tile grows when lit or hovered, the "Pixel Distance Error" becomes variable based on the timing of the click relative to the animation.
+
+### New Design
+Removed all scale transformations. Feedback is provided via color change and box-shadow only.
+
+### Source of Decision
+- HCI best practice (Motor control consistency)
+- Engineering best practice (Data integrity)
+
+### Reasoning
+To accurately measure "Pixel Distance Error" as a proxy for motor precision/ataxia, the target size must remain constant. Scaling creates a "moving target" effect that contaminates the research data.
+
+### Expected Impact
+- High-fidelity motor precision data.
+- More reliable "Pixel Distance Error" longitudinal tracking.
+- Cleaner visual interface with fewer distracting animations.
+
+---
+
+## Feature: Post-Animation "Ready" Delay
+
+### Original Design
+150ms delay before allowing user input.
+
+### Issue
+150ms is too short for a user to shift their cognitive state from "Watching" to "Acting." This often results in "anticipatory taps" or accidental double-clicks that invalidate the first-click Reaction Time (RT).
+
+### New Design
+Increased to 800ms.
+
+### Source of Decision
+- Cognitive / medical research (Set-shifting and preparatory intervals)
+
+### Reasoning
+A longer preparatory interval ensures the user has fully processed the end of the sequence and is ready to begin motor execution. This significantly reduces "noise" in the crucial first-click RT metric, which is the most sensitive indicator of mental fatigue.
+
+### Expected Impact
+- Elimination of most anticipatory/accidental taps.
+- Higher reliability of the "Decision Time" (First RT) metric.

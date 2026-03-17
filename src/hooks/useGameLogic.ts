@@ -6,15 +6,16 @@ import type { StoredSession } from '../lib/DataLogger';
 
 export type GameStatus = 'setup' | 'sequence' | 'input' | 'correct' | 'incorrect' | 'finished';
 
-const BASE_SEQUENCE_LENGTH = 3;
-const SEQUENCE_DELAY = 1000; // ms between sequence items lighting up
-const INPUT_TIMEOUT = 5000; // ms for the user to complete the whole sequence
-const GRID_DIMENSION = 4; // 4x4 grid
+const BASE_SEQUENCE_LENGTH = 2; // Start shorter for gradual cognitive ramp
+const SEQUENCE_DELAY = 1000; // Total time per sequence item
+const STIMULUS_DURATION = 600; // Duration the tile is actually lit (ms)
+const INPUT_TIMEOUT = 10000; // Increased timeout for accessibility
+const GRID_DIMENSION = 3; // 3x3 grid (Corsi-like baseline)
 
-const DEBOUNCE_TIME = 150; // ms to ignore subsequent clicks
-const POST_ANIMATION_DELAY = 150; // ms delay before enabling input
-const MIN_RT = 100; // ms minimum valid reaction time
-const MAX_RT = 5000; // ms maximum valid reaction time
+const DEBOUNCE_TIME = 200; // Increased debounce for motor precision
+const POST_ANIMATION_DELAY = 800; // Longer 'Ready' period (ms)
+const MIN_RT = 150; // Increased min RT to filter out anticipatory taps
+const MAX_RT = 5000; 
 
 export const useGameLogic = (gridSize: number) => {
   const [status, setStatus] = useState<GameStatus>('setup');
@@ -30,7 +31,7 @@ export const useGameLogic = (gridSize: number) => {
   const [trialStartTime, setTrialStartTime] = useState<number>(0);
   const [lastTapTime, setLastTapTime] = useState<number>(0);
 
-  // Helper to convert index to coordinates
+  // Helper to convert index to coordinates (Dynamic based on GRID_DIMENSION)
   const getCoords = (index: number) => {
     return {
       row: Math.floor(index / GRID_DIMENSION),
@@ -229,6 +230,7 @@ export const useGameLogic = (gridSize: number) => {
     advanceToNextTrial,
     finishGame,
     startInputPhase,
-    SEQUENCE_DELAY
+    SEQUENCE_DELAY,
+    STIMULUS_DURATION
   };
 };

@@ -84,8 +84,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, var(--tile-size));
-  grid-template-rows: repeat(4, var(--tile-size));
+  /* Removed hardcoded repeat(4, ...): now handled dynamically via inline styles */
   gap: var(--grid-gap);
   background-color: var(--color-background);
   padding: var(--grid-gap);
@@ -97,21 +96,21 @@
   width: var(--tile-size);
   height: var(--tile-size);
   background-color: var(--color-surface);
-  border-radius: 50%; /* Circles */
+  border-radius: 8px; /* Rounded squares (better for spatial grouping) */
   cursor: pointer;
-  transition: all var(--transition-speed) ease;
+  transition: background-color var(--transition-speed) ease;
   border: 2px solid transparent;
   user-select: none;
 }
 
 .tile:hover {
   background-color: #444;
-  transform: scale(1.05);
+  /* Removed scale: maintaining constant target size for motor accuracy */
 }
 
 .tile.lit {
   background-color: var(--color-lit);
-  transform: scale(1.1);
+  /* Removed scale: avoids interfering with spatial perception */
   box-shadow: 0 0 20px var(--color-lit);
 }
 

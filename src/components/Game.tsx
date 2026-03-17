@@ -8,7 +8,7 @@ import { saveUserSession } from '../lib/Auth';
 import type { ClassificationResult } from '../lib/Classification'; 
 
 
-const GRID_SIZE = 16; // 4x4 grid
+const GRID_SIZE = 9; // 3x3 grid (Research-aligned baseline)
 
 const Game: React.FC<{ userID: string }> = ({ userID }) => {
   const {
@@ -21,7 +21,8 @@ const Game: React.FC<{ userID: string }> = ({ userID }) => {
     advanceToNextTrial,
     finishGame,
     startInputPhase,
-    SEQUENCE_DELAY
+    SEQUENCE_DELAY,
+    STIMULUS_DURATION
   } = useGameLogic(GRID_SIZE);
 
   const [sessionStarted, setSessionStarted] = React.useState(false);
@@ -138,6 +139,7 @@ const Game: React.FC<{ userID: string }> = ({ userID }) => {
         onTileClick={handleTileClick}
         onSequenceComplete={startInputPhase}
         sequenceDelay={SEQUENCE_DELAY}
+        stimulusDuration={STIMULUS_DURATION}
       />
     </div>
   );

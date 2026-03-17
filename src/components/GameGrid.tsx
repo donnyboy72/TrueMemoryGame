@@ -10,6 +10,7 @@ interface GameGridProps {
   onTileClick: (index: number, clickX: number, clickY: number) => void;
   onSequenceComplete: () => void;
   sequenceDelay: number;
+  stimulusDuration: number;
 }
 
 const GameGrid: React.FC<GameGridProps> = ({
@@ -19,34 +20,27 @@ const GameGrid: React.FC<GameGridProps> = ({
   isUserTurn,
   onTileClick,
   onSequenceComplete,
-  sequenceDelay
+  sequenceDelay,
+  stimulusDuration
 }) => {
   const [litTile, setLitTile] = useState<number | null>(null);
 
   useEffect(() => {
     if (status === 'sequence') {
       let i = 0;
-      const interval = setInterval(() => {
-        if (i < sequence.length) {
-          setLitTile(sequence[i]);
-          i++;
-        } else {
+      const playSequence = async () => {
+        for (const tileIndex of sequence) {
+          setLitTile(tileIndex);
+          await new Promise(resolve => setTimeout(resolve, stimulusDuration));
           setLitTile(null);
-          clearInterval(interval);
-          onSequenceComplete();
+          await new Promise(resolve => setTimeout(resolve, sequenceDelay - stimulusDuration));
         }
-      }, sequenceDelay);
-
-      const cleanupTimeout = setTimeout(() => {
-        setLitTile(null);
-      }, sequence.length * sequenceDelay + sequenceDelay / 2);
-
-      return () => {
-        clearInterval(interval);
-        clearTimeout(cleanupTimeout);
+        onSequenceComplete();
       };
+
+      playSequence();
     }
-  }, [status, sequence, onSequenceComplete, sequenceDelay]);
+  }, [status, sequence, onSequenceComplete, sequenceDelay, stimulusDuration]);
 
   const getTileClass = (index: number) => {
     let className = 'tile';
@@ -62,8 +56,13 @@ const GameGrid: React.FC<GameGridProps> = ({
     return className;
   };
 
+  const columns = Math.sqrt(gridSize);
+
   return (
-    <div className="grid-container">
+    <div 
+      className="grid-container" 
+      style={{ gridTemplateColumns: `repeat(${columns}, var(--tile-size))` }}
+    >
       {Array.from({ length: gridSize }).map((_, index) => (
         <button
           key={index}
