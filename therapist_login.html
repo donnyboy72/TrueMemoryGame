@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Login - TrueMemoryGame</title>
+    <style>
+        :root {
+            --primary: #646cff;
+            --surface: #333;
+            --background: #242424;
+            --text: rgba(255, 255, 255, 0.87);
+            --error: #ff4444;
+            --success: #00c851;
+        }
+        body {
+            font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-card {
+            background-color: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #222;
+            color: white;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8em;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        button:hover {
+            filter: brightness(1.1);
+        }
+        .toggle-btn {
+            background: none;
+            color: var(--primary);
+            text-decoration: underline;
+            padding: 0;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border: none;
+            width: auto;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .message {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+        .error {
+            background-color: rgba(255, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+        .success {
+            background-color: rgba(0, 200, 81, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2 id="formTitle">Therapist Login</h2>
+        <form id="authForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" id="submitBtn">Login</button>
+        </form>
+        <button class="toggle-btn" id="toggleBtn">Don't have an account? Register</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('authForm');
+        const title = document.getElementById('formTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const messageDiv = document.getElementById('message');
+        
+        let isLogin = true;
+
+        toggleBtn.addEventListener('click', () => {
+            isLogin = !isLogin;
+            title.innerText = isLogin ? 'Therapist Login' : 'Therapist Register';
+            submitBtn.innerText = isLogin ? 'Login' : 'Register';
+            toggleBtn.innerText = isLogin ? "Don't have an account? Register" : "Already have an account? Login";
+            messageDiv.style.display = 'none';
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const endpoint = isLogin ? '/api/therapist/login' : '/api/therapist/register';
+            
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (isLogin) {
+                        localStorage.setItem('therapist_token', data.token);
+                        localStorage.setItem('therapist_user', data.username);
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        showMessage('Registration successful! Please login.', 'success');
+                        isLogin = true;
+                        title.innerText = 'Therapist Login';
+                        submitBtn.innerText = 'Login';
+                        toggleBtn.innerText = "Don't have an account? Register";
+                    }
+                } else {
+                    showMessage(data.error || 'Authentication failed', 'error');
+                }
+            } catch (err) {
+                showMessage('Connection error to backend', 'error');
+            }
+        });
+
+        function showMessage(text, type) {
+            messageDiv.innerText = text;
+            messageDiv.className = 'message ' + type;
+            messageDiv.style.display = 'block';
+        }
+
+        // Redirect if already logged in
+        if (localStorage.getItem('therapist_token')) {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>

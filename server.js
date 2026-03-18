@@ -3,6 +3,7 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,13 +16,66 @@ app.use(express.json());
 
 const DATA_ROOT = path.join(__dirname, 'data');
 const USERS_ROOT = path.join(DATA_ROOT, 'users');
+const THERAPISTS_FILE = path.join(DATA_ROOT, 'therapists.json');
 
 // Ensure base directories exist
+if (!fs.existsSync(DATA_ROOT)) {
+    fs.mkdirSync(DATA_ROOT, { recursive: true });
+}
 if (!fs.existsSync(USERS_ROOT)) {
     fs.mkdirSync(USERS_ROOT, { recursive: true });
 }
+if (!fs.existsSync(THERAPISTS_FILE)) {
+    fs.writeFileSync(THERAPISTS_FILE, JSON.stringify([], null, 2));
+}
 
-// 1. User Login / Profile Check
+// Helper: Hash password
+function hashPassword(password) {
+    return crypto.createHash('sha256').update(password).digest('hex');
+}
+
+// --- Therapist Authentication Endpoints ---
+
+// Register Therapist
+app.post('/api/therapist/register', (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) return res.status(400).json({ error: 'Username and password are required' });
+
+    const therapists = JSON.parse(fs.readFileSync(THERAPISTS_FILE, 'utf-8'));
+    if (therapists.find(t => t.username === username)) {
+        return res.status(400).json({ error: 'Username already exists' });
+    }
+
+    const newTherapist = {
+        username,
+        password: hashPassword(password),
+        created_at: new Date().toISOString()
+    };
+    therapists.push(newTherapist);
+    fs.writeFileSync(THERAPISTS_FILE, JSON.stringify(therapists, null, 2));
+
+    res.json({ success: true, message: 'Registration successful' });
+});
+
+// Login Therapist
+app.post('/api/therapist/login', (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) return res.status(400).json({ error: 'Username and password are required' });
+
+    const therapists = JSON.parse(fs.readFileSync(THERAPISTS_FILE, 'utf-8'));
+    const therapist = therapists.find(t => t.username === username);
+
+    if (!therapist || therapist.password !== hashPassword(password)) {
+        return res.status(401).json({ error: 'Invalid username or password' });
+    }
+
+    // In a real app, we would issue a JWT here. 
+    // For this prototype, we'll return a simple "token" that the client can store.
+    const token = Buffer.from(`${username}:${Date.now()}`).toString('base64');
+    res.json({ success: true, token, username });
+});
+
+// 1. User Login / Profile Check (for the game)
 app.post('/api/login', (req, res) => {
     const { userID } = req.body;
     if (!userID) return res.status(400).json({ error: 'userID is required' });

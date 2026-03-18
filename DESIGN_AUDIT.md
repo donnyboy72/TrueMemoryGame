@@ -230,27 +230,26 @@ This document tracks the reasoning, research basis, and technical justification 
 6.  **Better Alternatives:**  
     Use `localStorage` as a temporary buffer for every click, then sync and clear it at the end.
 
----
-
-### Feature: Therapist Dashboard Design
+### Feature: Therapist Authentication System
 
 1.  **Purpose:**  
-    A web view to list users, filter by session count, and view longitudinal graphs of RT and accuracy.
+    Protects sensitive research data (user IDs, session trends, and performance metrics) from unauthorized access.
 
 2.  **Source of Decision:**  
-    - **User explicitly requested it**
+    - **Security / Privacy best practice**
+    - **HIPAA compliance requirement** (Access control)
 
 3.  **Detailed Reasoning:**  
-    Raw JSON is useless for a clinician. Visualizing the *trend* (e.g., is the patient getting slower over weeks?) is the primary value proposition.
+    While the game data is de-identified, the aggregate view of user performance and longitudinal trends is sensitive research information. An open dashboard poses a risk of data scraping or unauthorized monitoring of specific (albeit anonymous) individuals. A login system ensures that only authorized researchers/therapists can view the analytical output.
 
 4.  **Supporting Evidence:**  
-    Standard Data Visualization (Dashboard) patterns.
+    The "Principle of Least Privilege" and HIPAA Technical Safeguards (45 CFR § 164.312(a)(1)) require unique user identification and access control for systems containing protected health-related info.
 
 5.  **Weaknesses:**  
-    The current dashboard has no authentication (anybody can see the data).
+    The current implementation uses a client-side "token" check. While it prevents casual access to the UI, the underlying `/api/users` and `/api/export` endpoints are still technically accessible via direct URL/API calls without a server-side middleware check (e.g., JWT verification).
 
 6.  **Better Alternatives:**  
-    Add a simple password protection or JWT-based login for the therapist.
+    Implement server-side middleware for all `/api/users/*` and `/api/export` routes to verify a valid session/token before returning data.
 
 ---
 
@@ -259,11 +258,11 @@ This document tracks the reasoning, research basis, and technical justification 
 ### Top 3 Strongest Design Decisions (Research-Backed)
 1.  **Multi-Dimensional Error Logging:** Capturing both *Spatial* (cognitive) and *Pixel* (motor) errors allows for a more holistic view of impairment than accuracy alone.
 2.  **HIPAA-First De-identification:** The use of SHA-256 client-side hashing shows a professional commitment to data ethics and privacy.
-3.  **Euclidean Distance Classification:** Using normalized 3D space for classification is a mathematically sound way to handle the trade-off between speed (RT) and accuracy.
+3.  **Access-Controlled Research Dashboard:** The addition of a therapist-specific login system ensures that clinical data is protected and follows standard security protocols.
 
 ### Top 3 Weakest Design Decisions (Need Improvement)
 1.  **Circular Simulation Logic:** The classifier is currently judged against a simulator that "guesses" what fatigue looks like. This makes the accuracy of the classification "imaginary" until human-verified.
-2.  **Lack of Dashboard Security:** Storing "anonymous" medical data is good, but exposing the entire database via a public `/api/users` endpoint is a significant security risk.
+2.  **Client-Side Auth Only:** While the dashboard UI is protected, the API endpoints themselves do not yet require a verified session token for data retrieval.
 3.  **No Screen-Size Normalization:** Pixel Error is currently meaningless for comparing a user on an iPad vs. a user on a Desktop.
 
 ### What changes would make this project publishable research?

@@ -98,13 +98,37 @@
     </style>
 </head>
 <body>
+    <script>
+        // --- Authentication Guard ---
+        (function() {
+            const token = localStorage.getItem('therapist_token');
+            if (!token) {
+                window.location.href = 'therapist_login.html';
+            }
+        })();
+
+        function logout() {
+            localStorage.removeItem('therapist_token');
+            localStorage.removeItem('therapist_user');
+            window.location.href = 'therapist_login.html';
+        }
+    </script>
+
     <header>
-        <h1>Research Dashboard</h1>
+        <div>
+            <h1>Research Dashboard</h1>
+            <p id="welcomeMsg" style="margin: 0; font-size: 0.9rem; color: #aaa;"></p>
+        </div>
         <div>
             <button onclick="exportData()">Export Dataset (CSV)</button>
             <button onclick="location.href='index.html'" style="background: #444; margin-left: 0.5rem;">Return to Game</button>
+            <button onclick="logout()" style="background: #ff4444; margin-left: 0.5rem;">Logout</button>
         </div>
     </header>
+
+    <script>
+        document.getElementById('welcomeMsg').innerText = 'Logged in as: ' + (localStorage.getItem('therapist_user') || 'Therapist');
+    </script>
 
     <div class="filters">
         <div class="filter-item">
