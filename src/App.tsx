@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Game from './components/Game';
 import { logger } from './lib/DataLogger';
-import { generateUserID, loginUser, type UserProfile } from './lib/Auth';
+import { generateUserID, loginUser, syncAllUserSessions, type UserProfile } from './lib/Auth';
 import './App.css';
 
 const Login: React.FC<{ onLogin: (profile: UserProfile) => void }> = ({ onLogin }) => {
@@ -73,6 +73,7 @@ const Login: React.FC<{ onLogin: (profile: UserProfile) => void }> = ({ onLogin 
 
 function App() {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [isSyncing, setIsSyncing] = useState(false);
 
   useEffect(() => {
     const savedProfile = sessionStorage.getItem('user_profile');
@@ -91,11 +92,31 @@ function App() {
     sessionStorage.removeItem('user_profile');
   };
 
-  const handleExport = () => {
+  const performSync = async (profile: UserProfile, sessions: any[]) => {
+    if (!sessions.length) return 0;
+    setIsSyncing(true);
+    try {
+      const result = await syncAllUserSessions(profile.user_id, sessions);
+      console.log(`Synced ${result.synced} new sessions to server.`);
+      return result.synced;
+    } catch (err) {
+      console.error("Sync failed:", err);
+      return 0;
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  const handleExport = async () => {
     const sessions = logger.getAllSessions();
     if (sessions.length === 0) {
       alert("No session data to export.");
       return;
+    }
+
+    // Sync to server first
+    if (userProfile) {
+      await performSync(userProfile, sessions);
     }
 
     const dataStr = JSON.stringify(sessions, null, 2);
@@ -121,11 +142,18 @@ function App() {
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         try {
           const sessions = JSON.parse(event.target?.result as string);
           logger.importSessions(sessions);
-          alert(`Successfully imported ${sessions.length} sessions! The page will now reload to reflect the changes.`);
+          
+          // Sync imported sessions to server
+          if (userProfile) {
+             const synced = await performSync(userProfile, sessions);
+             alert(`Imported ${sessions.length} sessions and synced ${synced} new sessions to the server!`);
+          } else {
+             alert(`Successfully imported ${sessions.length} sessions locally!`);
+          }
           window.location.reload(); 
         } catch (error) {
           console.error("Failed to parse imported file:", error);
@@ -135,6 +163,13 @@ function App() {
       reader.readAsText(file);
     };
     input.click();
+  };
+
+  const handleSyncManual = async () => {
+    if (!userProfile) return;
+    const sessions = logger.getAllSessions();
+    const synced = await performSync(userProfile, sessions);
+    alert(`Sync complete! ${synced} new sessions were added to the server.`);
   };
   
   const handleClear = () => {
@@ -149,7 +184,14 @@ function App() {
       <header className="App-header">
         <h1>Cognitive Rehabilitation Task</h1>
         <p>Memory Sequence Game {userProfile && `| ID: ${userProfile.user_id}`}</p>
-        {userProfile && <button onClick={handleLogout} className="logout-button">Logout</button>}
+        {userProfile && (
+          <div className="header-actions" style={{ display: 'flex', gap: '0.5rem' }}>
+            <button onClick={handleSyncManual} disabled={isSyncing} className="sync-button" style={{ background: '#4CAF50' }}>
+              {isSyncing ? 'Syncing...' : 'Sync to Server'}
+            </button>
+            <button onClick={handleLogout} className="logout-button">Logout</button>
+          </div>
+        )}
       </header>
       <main>
         {userProfile ? (
@@ -160,8 +202,8 @@ function App() {
       </main>
       <footer className="App-footer">
         <div className="data-management">
-          <button onClick={handleExport}>Export Local Data</button>
-          <button onClick={handleImport}>Import Local Data</button>
+          <button onClick={handleExport} disabled={isSyncing}>Export Local Data</button>
+          <button onClick={handleImport} disabled={isSyncing}>Import Local Data</button>
           <button onClick={handleClear} className="danger-button">Clear Local Data</button>
         </div>
         <div style={{ marginTop: '1rem' }}>

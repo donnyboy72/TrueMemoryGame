@@ -3,6 +3,7 @@
 const API_BASE = 'http://localhost:3001/api';
 let users = [];
 let charts = {};
+let selectedUserID = null;
 
 async function loadUsers() {
     try {
@@ -19,8 +20,9 @@ async function loadUsers() {
             
             // Check if user has session dates
             if (user.firstSession && user.lastSession) {
-                const firstDate = new Date(user.firstSession).toISOString().split('T')[0];
-                const lastDate = new Date(user.lastSession).toISOString().split('T')[0];
+                // Ensure we only compare the YYYY-MM-DD part
+                const firstDate = user.firstSession.slice(0, 10);
+                const lastDate = user.lastSession.slice(0, 10);
                 
                 if (dateStart && lastDate < dateStart) return false;
                 if (dateEnd && firstDate > dateEnd) return false;
@@ -37,6 +39,9 @@ async function loadUsers() {
         filteredUsers.forEach(user => {
             const row = document.createElement('tr');
             row.id = `user-${user.userID}`;
+            if (user.userID === selectedUserID) {
+                row.classList.add('selected');
+            }
             row.innerHTML = `
                 <td>${user.userID}</td>
                 <td>${user.totalSessions}</td>
@@ -50,9 +55,12 @@ async function loadUsers() {
 }
 
 async function selectUser(userID) {
+    selectedUserID = userID;
+    
     // UI selection state
     document.querySelectorAll('#userList tr').forEach(r => r.classList.remove('selected'));
-    document.getElementById(`user-${userID}`).classList.add('selected');
+    const selectedRow = document.getElementById(`user-${userID}`);
+    if (selectedRow) selectedRow.classList.add('selected');
     
     // Show detail view
     document.getElementById('detailView').style.display = 'block';
@@ -62,6 +70,9 @@ async function selectUser(userID) {
         const response = await fetch(`${API_BASE}/users/${userID}/sessions`);
         const sessions = await response.json();
         
+        // Ensure we are still showing the user we just fetched
+        if (selectedUserID !== userID) return;
+
         const lastActive = sessions.length > 0 ? new Date(sessions[sessions.length - 1].session_timestamp).toLocaleString() : 'N/A';
         document.getElementById('userDetailStats').innerText = `Total Sessions: ${sessions.length} | Last Active: ${lastActive}`;
         
@@ -81,14 +92,26 @@ async function selectUser(userID) {
             sessionList.appendChild(row);
         });
 
-        // Update Charts
-        updateCharts(sessions);
+        // Update Charts (with a small timeout to ensure display:block layout is finished)
+        setTimeout(() => {
+            if (selectedUserID === userID) {
+                updateCharts(sessions);
+            }
+        }, 50);
     } catch (err) {
         console.error(`Failed to load sessions for ${userID}:`, err);
     }
 }
 
 function updateCharts(sessions) {
+    // Clear old charts explicitly if they exist
+    Object.keys(charts).forEach(id => {
+        if (charts[id]) {
+            charts[id].destroy();
+            charts[id] = null;
+        }
+    });
+
     const labels = sessions.map((s, i) => `Session ${i + 1}`);
     const rtData = sessions.map(s => s.average_reaction_time_ms);
     const accuracyData = sessions.map(s => s.average_accuracy * 100);
@@ -96,8 +119,10 @@ function updateCharts(sessions) {
 
     // Helper to create or update chart
     function refreshChart(id, label, data, color) {
-        if (charts[id]) charts[id].destroy();
-        const ctx = document.getElementById(id).getContext('2d');
+        const canvas = document.getElementById(id);
+        if (!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
         charts[id] = new Chart(ctx, {
             type: 'line',
             data: {
@@ -113,6 +138,9 @@ function updateCharts(sessions) {
             },
             options: {
                 responsive: true,
+                animation: {
+                    duration: 400 // Slight animation for smoothness
+                },
                 plugins: { legend: { labels: { color: 'white' } } },
                 scales: {
                     x: { ticks: { color: 'white' }, grid: { color: '#444' } },

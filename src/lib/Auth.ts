@@ -42,3 +42,13 @@ export async function saveUserSession(userID: string, sessionData: any) {
   if (!response.ok) throw new Error('Failed to save session');
   return response.json();
 }
+
+export async function syncAllUserSessions(userID: string, sessions: any[]) {
+  const response = await fetch(`${API_BASE}/sync`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userID, sessions })
+  });
+  if (!response.ok) throw new Error('Failed to sync sessions');
+  return response.json();
+}

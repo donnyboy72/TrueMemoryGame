@@ -253,17 +253,63 @@ This document tracks the reasoning, research basis, and technical justification 
 
 ---
 
+### Feature: Bulk Data Synchronization (Sync)
+
+1.  **Purpose:**  
+    Ensures that data imported or exported locally by the user is automatically mirrored to the researcher's central dashboard.
+
+2.  **Source of Decision:**  
+    - **Engineering best practice** (Data redundancy/availability)
+    - **User experience improvement**
+
+3.  **Detailed Reasoning:**  
+    Local data (stored in `localStorage`) is fragile and can be cleared by the browser. By automatically syncing local imports/exports to the server, we ensure the Therapist Dashboard always has the "Full Picture," regardless of which device or browser the user played on.
+
+4.  **Supporting Evidence:**  
+    Standard "Cloud Sync" pattern. The system uses unique `session_id` checks to prevent duplicate entries, ensuring data integrity even if the same file is imported multiple times.
+
+5.  **Weaknesses:**  
+    Relies on the user initiating an "Export" or "Import" to trigger the full sync, though individual games are saved automatically.
+
+6.  **Better Alternatives:**  
+    Implement a background "Sync heartbeat" that periodically checks for unsynced local sessions.
+
+---
+
+### Feature: Server-Side Session Validation & Filtering
+
+1.  **Purpose:**  
+    Ensures the dashboard only displays valid, individual session files and maintains accurate session counts.
+
+2.  **Source of Decision:**  
+    - **Bug Fix / Technical Debt reduction**
+    - **Data Integrity**
+
+3.  **Detailed Reasoning:**  
+    Early versions guessed session dates from filenames and could be "poisoned" by bulk JSON files stored in the same folder. The new system explicitly parses each JSON file, validates it is a single session (not an array), and uses the internal `session_timestamp` for all sorting and filtering.
+
+4.  **Supporting Evidence:**  
+    Defensive programming and "Schema Validation" principles.
+
+5.  **Weaknesses:**  
+    Reading every JSON file to generate the user list can become slow if a user has thousands of sessions.
+
+6.  **Better Alternatives:**  
+    Index session metadata in the `profile.json` file for faster O(1) lookups.
+
+---
+
 ## CRITICAL ANALYSIS SUMMARY
 
 ### Top 3 Strongest Design Decisions (Research-Backed)
 1.  **Multi-Dimensional Error Logging:** Capturing both *Spatial* (cognitive) and *Pixel* (motor) errors allows for a more holistic view of impairment than accuracy alone.
-2.  **HIPAA-First De-identification:** The use of SHA-256 client-side hashing shows a professional commitment to data ethics and privacy.
+2.  **Automatic Data Mirroring:** The "Sync" system ensures that researchers never lose data due to browser cache clearing, creating a reliable bridge between local play and central analysis.
 3.  **Access-Controlled Research Dashboard:** The addition of a therapist-specific login system ensures that clinical data is protected and follows standard security protocols.
 
 ### Top 3 Weakest Design Decisions (Need Improvement)
 1.  **Circular Simulation Logic:** The classifier is currently judged against a simulator that "guesses" what fatigue looks like. This makes the accuracy of the classification "imaginary" until human-verified.
 2.  **Client-Side Auth Only:** While the dashboard UI is protected, the API endpoints themselves do not yet require a verified session token for data retrieval.
-3.  **No Screen-Size Normalization:** Pixel Error is currently meaningless for comparing a user on an iPad vs. a user on a Desktop.
+3.  **O(N) Session Scanning:** The server currently scans the filesystem to count sessions. This will eventually require a database or a metadata index as the dataset grows.
 
 ### What changes would make this project publishable research?
 1.  **Validation Study:** Run a "controlled fatigue" study (e.g., test users at 9 AM vs. 11 PM) and use that data to replace the synthetic `summary.json`.

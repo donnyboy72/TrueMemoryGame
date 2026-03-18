@@ -146,6 +146,61 @@ app.post('/api/session', (req, res) => {
     res.json({ success: true, filename: sessionFilename });
 });
 
+// 2b. Bulk Sync Sessions
+app.post('/api/sync', (req, res) => {
+    const { userID, sessions } = req.body;
+    if (!userID || !Array.isArray(sessions)) return res.status(400).json({ error: 'userID and sessions array are required' });
+
+    const userDir = path.join(USERS_ROOT, userID);
+    const sessionsDir = path.join(userDir, 'sessions');
+    const profilePath = path.join(userDir, 'profile.json');
+
+    if (!fs.existsSync(sessionsDir)) {
+        fs.mkdirSync(sessionsDir, { recursive: true });
+    }
+
+    let savedCount = 0;
+    
+    // Get existing session IDs to avoid duplicates
+    const existingFiles = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json'));
+    const existingIDs = new Set();
+    existingFiles.forEach(f => {
+        try {
+            const data = JSON.parse(fs.readFileSync(path.join(sessionsDir, f), 'utf-8'));
+            if (data.session_id) existingIDs.add(data.session_id);
+        } catch (e) { /* ignore corrupt files */ }
+    });
+
+    sessions.forEach(session => {
+        if (!session.session_id || existingIDs.has(session.session_id)) return;
+
+        const timestampStr = new Date(session.timestamp_relative_ms || Date.now())
+            .toISOString().replace(/[:T]/g, '_').split('.')[0];
+        const sessionFilename = `sync_session_${session.session_id.substring(0, 8)}_${timestampStr}.json`;
+        const sessionPath = path.join(sessionsDir, sessionFilename);
+
+        const finalSession = {
+            ...session,
+            user_id: userID,
+            session_timestamp: new Date(session.timestamp_relative_ms || Date.now()).toISOString(),
+            is_synced: true
+        };
+
+        fs.writeFileSync(sessionPath, JSON.stringify(finalSession, null, 2));
+        savedCount++;
+    });
+
+    // Update profile with total count
+    if (fs.existsSync(profilePath)) {
+        const profile = JSON.parse(fs.readFileSync(profilePath, 'utf-8'));
+        const totalFiles = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json')).length;
+        profile.total_sessions = totalFiles;
+        fs.writeFileSync(profilePath, JSON.stringify(profile, null, 2));
+    }
+
+    res.json({ success: true, synced: savedCount });
+});
+
 // 3. List All Users (Dashboard)
 app.get('/api/users', (req, res) => {
     if (!fs.existsSync(USERS_ROOT)) return res.json([]);
@@ -163,17 +218,34 @@ app.get('/api/users', (req, res) => {
 
         let firstSession = null;
         let lastSession = null;
+        let sessionCount = 0;
+
         if (fs.existsSync(sessionsDir)) {
-            const sessionFiles = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json')).sort();
-            if (sessionFiles.length > 0) {
-                firstSession = sessionFiles[0].replace('session_', '').replace('.json', '').replace(/_/g, ':');
-                lastSession = sessionFiles[sessionFiles.length - 1].replace('session_', '').replace('.json', '').replace(/_/g, ':');
+            // ONLY include files that match our session naming pattern
+            const sessionFiles = fs.readdirSync(sessionsDir).filter(f => 
+                f.startsWith('session_') || f.startsWith('sync_session_')
+            );
+            
+            sessionCount = sessionFiles.length;
+
+            if (sessionCount > 0) {
+                const timestamps = sessionFiles.map(f => {
+                    try {
+                        const data = JSON.parse(fs.readFileSync(path.join(sessionsDir, f), 'utf-8'));
+                        return data.session_timestamp || data.timestamp_relative_ms || null;
+                    } catch (e) { return null; }
+                }).filter(t => t !== null).sort();
+
+                if (timestamps.length > 0) {
+                    firstSession = timestamps[0];
+                    lastSession = timestamps[timestamps.length - 1];
+                }
             }
         }
 
         return {
             userID,
-            totalSessions: profile.total_sessions || 0,
+            totalSessions: sessionCount, // Use dynamic count for accuracy
             firstSession,
             lastSession,
             createdAt: profile.created_at
@@ -190,8 +262,23 @@ app.get('/api/users/:userID/sessions', (req, res) => {
 
     if (!fs.existsSync(sessionsDir)) return res.json([]);
 
-    const sessionFiles = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json')).sort();
-    const sessions = sessionFiles.map(f => JSON.parse(fs.readFileSync(path.join(sessionsDir, f), 'utf-8')));
+    // ONLY include files that match our session naming pattern
+    const sessionFiles = fs.readdirSync(sessionsDir).filter(f => 
+        f.startsWith('session_') || f.startsWith('sync_session_')
+    );
+
+    const sessions = sessionFiles.map(f => {
+        try {
+            return JSON.parse(fs.readFileSync(path.join(sessionsDir, f), 'utf-8'));
+        } catch (e) { return null; }
+    }).filter(s => s !== null && typeof s === 'object' && !Array.isArray(s));
+
+    // Sort by timestamp before sending to client
+    sessions.sort((a, b) => {
+        const timeA = new Date(a.session_timestamp || a.timestamp_relative_ms || 0).getTime();
+        const timeB = new Date(b.session_timestamp || b.timestamp_relative_ms || 0).getTime();
+        return timeA - timeB;
+    });
 
     res.json(sessions);
 });
