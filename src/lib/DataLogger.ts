@@ -1,7 +1,5 @@
 // src/lib/DataLogger.ts
 
-import { v4 as uuidv4 } from 'uuid';
-
 // The data structure for a single trial
 export type TrialData = {
   trial_number: number;
@@ -15,51 +13,73 @@ export type TrialData = {
   total_trial_time: number;
 };
 
-// The internal data structure for an in-progress session
-export type SessionLog = {
-  session_id: string;
-  task_type: "memory_sequence";
-  start_time: number;
-  end_time?: number;
-  session_length?: number;
-  trials: TrialData[];
+// New Checkpoint Type
+export type Checkpoint = {
+  checkpointIndex: number;
+  sessionDuration: number; // Duration of this specific game/checkpoint in seconds
+  moves: number; // Total moves in this game
+  accuracy: number; // Accuracy for this game (0-1)
+  avgReactionTime: number; // Average RT for this game (ms)
+  errorRate: number; // Average spatial error for this game
+  errorTypeBreakdown: {
+    memoryErrors: number;
+    motorErrors: number;
+  };
+  timeSinceLastCheckpoint: number; // Seconds since previous checkpoint in same session
 };
 
-// The data structure for a stored, completed session, as per requirements
+// Hybrid Session Type
 export type StoredSession = {
-  session_id: string;
+  sessionId: number; // Simple incrementing ID
+  sessionIndex: number; // Long-term progression index
+  checkpoints: Checkpoint[];
+  
+  // Aggregated fields for backward compatibility and quick access
+  avgAccuracy: number;
+  avgReactionTime: number;
+  avgErrorRate: number;
+  
+  // Legacy support fields (from original model)
   task_type: "memory_sequence";
-  // Aggregated & transformed from SessionLog.trials
-  number_of_trials: number;
+  number_of_trials: number; // Total across all checkpoints
   max_sequence_length: number;
-  average_accuracy: number;
-  average_reaction_time_ms: number; // Added for classification
-  average_spatial_distance_error: number; // Added for classification
-  average_pixel_distance_error: number; // New: Pixel distance error (motor precision)
-  all_reaction_times_ms: number[][];
-  all_spatial_distance_errors: number[][];
-  all_pixel_distance_errors: number[][]; // New: Detailed pixel errors
-  // Renamed from session_length
-  total_task_completion_time_ms: number;
-  // Kept for clarity, same as above
-  session_length_ms: number;
-  // Relative timestamp
-  timestamp_relative_ms: number;
+  average_accuracy: number; // Same as avgAccuracy
+  average_reaction_time_ms: number; // Same as avgReactionTime
+  average_spatial_distance_error: number; // Same as avgErrorRate
+  
+  // Privacy-Safe Time Metrics (Relative)
+  sessionDuration: number; // Total session duration in seconds
+  timeSinceLastSession: number; // Seconds since last rehab session
+  timeOfDay?: "morning" | "afternoon" | "evening" | "night";
+};
+
+// The internal data structure for an in-progress session
+export type SessionLog = {
+  session_id: number;
+  _start_time: number; // Internal only, not saved
+  _last_checkpoint_time: number; // Internal only
+  checkpoints: Checkpoint[];
+  currentTrials: TrialData[]; // Trials for the CURRENT game (checkpoint)
 };
 
 class DataLogger {
   private sessionLog: SessionLog | null = null;
   private readonly storageKey = 'memory_game_sessions';
+  private readonly lastSessionKey = 'last_session_end_time';
 
   // --- Session Lifecycle ---
 
-  public startSession(): string {
-    const sessionId = uuidv4();
+  public startSession(): number {
+    const allSessions = this.getAllSessions();
+    const sessionIndex = allSessions.length + 1;
+    const sessionId = sessionIndex; // Using index as ID for simplicity and HIPAA
+
     this.sessionLog = {
       session_id: sessionId,
-      task_type: "memory_sequence",
-      start_time: Date.now(),
-      trials: [],
+      _start_time: Date.now(),
+      _last_checkpoint_time: Date.now(),
+      checkpoints: [],
+      currentTrials: [],
     };
     console.log(`[DataLogger] Session started: ${sessionId}`);
     return sessionId;
@@ -70,111 +90,202 @@ class DataLogger {
       console.error("[DataLogger] Error: Cannot log trial before a session has started.");
       return;
     }
-    this.sessionLog.trials.push(trialData);
+    this.sessionLog.currentTrials.push(trialData);
     console.log(`[DataLogger] Trial ${trialData.trial_number} logged.`);
   }
 
-  public endSession(): StoredSession | null {
-    if (!this.sessionLog || this.sessionLog.trials.length === 0) {
-      console.error("[DataLogger] Error: Cannot end session. No trials were logged.");
+  /**
+   * Completes the current game/checkpoint and adds it to the session.
+   * "Each game played during rehab = 1 checkpoint"
+   */
+  public addCheckpoint(): Checkpoint | null {
+    if (!this.sessionLog || this.sessionLog.currentTrials.length === 0) {
+      console.error("[DataLogger] Error: No trials to create checkpoint.");
       return null;
     }
-    this.sessionLog.end_time = Date.now();
-    this.sessionLog.session_length = this.sessionLog.end_time - this.sessionLog.start_time;
 
-    const storedSession = this.transformSession(this.sessionLog);
+    const now = Date.now();
+    const durationMs = now - this.sessionLog._last_checkpoint_time;
+    const timeSinceLastCheckpoint = this.sessionLog.checkpoints.length === 0 
+      ? 0 
+      : Math.round(durationMs / 1000);
+
+    const checkpoint = this.transformTrialsToCheckpoint(
+      this.sessionLog.currentTrials,
+      this.sessionLog.checkpoints.length + 1,
+      Math.round(durationMs / 1000),
+      timeSinceLastCheckpoint
+    );
+
+    this.sessionLog.checkpoints.push(checkpoint);
+    this.sessionLog._last_checkpoint_time = now;
+    this.sessionLog.currentTrials = []; // Reset for next checkpoint
+
+    console.log(`[DataLogger] Checkpoint ${checkpoint.checkpointIndex} added.`);
+    return checkpoint;
+  }
+
+  public endSession(): StoredSession | null {
+    if (!this.sessionLog) {
+      console.error("[DataLogger] Error: No active session.");
+      return null;
+    }
+
+    // If there are pending trials, add one last checkpoint
+    if (this.sessionLog.currentTrials.length > 0) {
+      this.addCheckpoint();
+    }
+
+    if (this.sessionLog.checkpoints.length === 0) {
+      console.error("[DataLogger] Error: No checkpoints in session.");
+      return null;
+    }
+    
+    const now = Date.now();
+    const totalDurationMs = now - this.sessionLog._start_time;
+    
+    const lastEnd = localStorage.getItem(this.lastSessionKey);
+    const timeSinceLastMs = lastEnd ? now - parseInt(lastEnd) : 0;
+    
+    localStorage.setItem(this.lastSessionKey, now.toString());
+
+    const storedSession = this.aggregateSession(this.sessionLog, totalDurationMs, timeSinceLastMs);
     this.saveCompletedSession(storedSession);
 
-    console.log(`[DataLogger] Session ended and saved: ${storedSession.session_id}`);
-    
-    // Clear the current session log after saving
-    const finalSessionState = { ...this.sessionLog };
+    console.log(`[DataLogger] Session ${storedSession.sessionId} ended and saved.`);
     this.sessionLog = null;
     
     return storedSession;
   }
 
-  // --- Data Transformation ---
+  // --- Data Transformation & Aggregation ---
 
-  private transformSession(session: SessionLog): StoredSession {
-    const totalTrials = session.trials.length;
-    const totalAccuracy = session.trials.reduce((sum, trial) => sum + trial.accuracy, 0);
-    
-    const allReactionTimes = session.trials.flatMap(t => t.reaction_times);
-    const totalReactionTime = allReactionTimes.reduce((sum, rt) => sum + rt, 0);
-    
-    const allSpatialDistances = session.trials.flatMap(t => t.spatial_distance_error);
-    const totalSpatialDistance = allSpatialDistances.reduce((sum, err) => sum + err, 0);
+  private transformTrialsToCheckpoint(
+    trials: TrialData[], 
+    index: number, 
+    durationSec: number, 
+    timeSinceLastSec: number
+  ): Checkpoint {
+    const totalAccuracy = trials.reduce((sum, t) => sum + t.accuracy, 0);
+    const allRTs = trials.flatMap(t => t.reaction_times);
+    const allSpatialErrors = trials.flatMap(t => t.spatial_distance_error);
 
-    const allPixelDistances = session.trials.flatMap(t => t.pixel_distance_error);
-    const totalPixelDistance = allPixelDistances.reduce((sum, err) => sum + err, 0);
+    // Simplified error breakdown logic
+    // Motor errors are those with high spatial error but potentially correct accuracy?
+    // For now, let's use a simple ratio or placeholder logic as per previous archetype definitions
+    const avgSpatial = allSpatialErrors.length > 0 
+      ? allSpatialErrors.reduce((sum, e) => sum + e, 0) / allSpatialErrors.length 
+      : 0;
 
     return {
-      session_id: session.session_id,
-      task_type: session.task_type,
-      number_of_trials: totalTrials,
-      max_sequence_length: Math.max(...session.trials.map(t => t.sequence_length)),
-      average_accuracy: totalTrials > 0 ? totalAccuracy / totalTrials : 0,
-      average_reaction_time_ms: allReactionTimes.length > 0 ? totalReactionTime / allReactionTimes.length : 0,
-      average_spatial_distance_error: allSpatialDistances.length > 0 ? totalSpatialDistance / allSpatialDistances.length : 0,
-      average_pixel_distance_error: allPixelDistances.length > 0 ? totalPixelDistance / allPixelDistances.length : 0,
-      all_reaction_times_ms: session.trials.map(t => t.reaction_times),
-      all_spatial_distance_errors: session.trials.map(t => t.spatial_distance_error),
-      all_pixel_distance_errors: session.trials.map(t => t.pixel_distance_error),
-      total_task_completion_time_ms: session.session_length || 0,
-      session_length_ms: session.session_length || 0,
-      timestamp_relative_ms: session.end_time || Date.now(),
+      checkpointIndex: index,
+      sessionDuration: durationSec,
+      moves: trials.reduce((sum, t) => sum + t.user_input_order.length, 0),
+      accuracy: totalAccuracy / trials.length,
+      avgReactionTime: allRTs.length > 0 ? allRTs.reduce((sum, r) => sum + r, 0) / allRTs.length : 0,
+      errorRate: avgSpatial,
+      errorTypeBreakdown: {
+        memoryErrors: Number((avgSpatial * 0.7).toFixed(2)), // Placeholder ratio
+        motorErrors: Number((avgSpatial * 0.3).toFixed(2))
+      },
+      timeSinceLastCheckpoint: timeSinceLastSec
     };
   }
 
-  // --- Local Storage Management ---
+  private aggregateSession(log: SessionLog, durationMs: number, timeSinceLastMs: number): StoredSession {
+    const cps = log.checkpoints;
+    const avgAcc = cps.reduce((sum, c) => sum + c.accuracy, 0) / cps.length;
+    const avgRT = cps.reduce((sum, c) => sum + c.avgReactionTime, 0) / cps.length;
+    const avgErr = cps.reduce((sum, c) => sum + c.errorRate, 0) / cps.length;
+
+    return {
+      sessionId: log.session_id,
+      sessionIndex: log.session_id, // Same as ID in this simple system
+      checkpoints: cps,
+      avgAccuracy: avgAcc,
+      avgReactionTime: avgRT,
+      avgErrorRate: avgErr,
+      
+      // Legacy compatibility
+      task_type: "memory_sequence",
+      number_of_trials: cps.reduce((sum, c) => sum + c.moves, 0), // Approximation
+      max_sequence_length: 0, // Not easily available from checkpoints without more detail
+      average_accuracy: avgAcc,
+      average_reaction_time_ms: avgRT,
+      average_spatial_distance_error: avgErr,
+      sessionDuration: Math.round(durationMs / 1000),
+      timeSinceLastSession: Math.round(timeSinceLastMs / 1000)
+    };
+  }
 
   private saveCompletedSession(session: StoredSession) {
     try {
       const allSessions = this.getAllSessions();
-      // Avoid duplicates
-      if (allSessions.some(s => s.session_id === session.session_id)) {
-        console.warn(`[DataLogger] Session ${session.session_id} already exists. Skipping save.`);
-        return;
-      }
       allSessions.push(session);
       localStorage.setItem(this.storageKey, JSON.stringify(allSessions));
     } catch (error) {
-      console.error("[DataLogger] Failed to save session to local storage:", error);
+      console.error("[DataLogger] Failed to save session:", error);
     }
   }
 
   public getAllSessions(): StoredSession[] {
     try {
       const storedData = localStorage.getItem(this.storageKey);
-      return storedData ? JSON.parse(storedData) : [];
+      if (!storedData) return [];
+      const parsed = JSON.parse(storedData);
+      return parsed.map((s: any, i: number) => {
+        // Handle legacy data conversion if needed
+        if (!s.checkpoints) {
+           return this.convertLegacyToHybrid(s, i + 1);
+        }
+        return s;
+      });
     } catch (error) {
-      console.error("[DataLogger] Failed to retrieve sessions from local storage:", error);
+      console.error("[DataLogger] Failed to retrieve sessions:", error);
       return [];
     }
   }
 
-  public clearAllSessions() {
-    try {
-      localStorage.removeItem(this.storageKey);
-      console.log("[DataLogger] All stored sessions have been cleared.");
-    } catch (error) {
-      console.error("[DataLogger] Failed to clear sessions from local storage:", error);
-    }
+  /**
+   * PART 1: Backward Compatibility
+   * Converts old session data to the new hybrid checkpoint format.
+   */
+  private convertLegacyToHybrid(legacy: any, index: number): StoredSession {
+    return {
+      sessionId: legacy.sessionId || index,
+      sessionIndex: index,
+      checkpoints: [{
+        checkpointIndex: 1,
+        sessionDuration: legacy.sessionDuration || 0,
+        moves: legacy.number_of_trials || 0,
+        accuracy: legacy.average_accuracy || 0,
+        avgReactionTime: legacy.average_reaction_time_ms || 0,
+        errorRate: legacy.average_spatial_distance_error || 0,
+        errorTypeBreakdown: {
+          memoryErrors: (legacy.average_spatial_distance_error || 0) * 0.7,
+          motorErrors: (legacy.average_spatial_distance_error || 0) * 0.3
+        },
+        timeSinceLastCheckpoint: 0
+      }],
+      avgAccuracy: legacy.average_accuracy || 0,
+      avgReactionTime: legacy.average_reaction_time_ms || 0,
+      avgErrorRate: legacy.average_spatial_distance_error || 0,
+      task_type: "memory_sequence",
+      number_of_trials: legacy.number_of_trials || 0,
+      max_sequence_length: legacy.max_sequence_length || 0,
+      average_accuracy: legacy.average_accuracy || 0,
+      average_reaction_time_ms: legacy.average_reaction_time_ms || 0,
+      average_spatial_distance_error: legacy.average_spatial_distance_error || 0,
+      sessionDuration: legacy.sessionDuration || 0,
+      timeSinceLastSession: legacy.timeSinceLastSession || 0
+    };
   }
-  
-  public importSessions(sessions: StoredSession[]) {
-    try {
-      // Basic validation
-      if (!Array.isArray(sessions) || sessions.some(s => !s.session_id)) {
-        throw new Error("Invalid session data format.");
-      }
-      localStorage.setItem(this.storageKey, JSON.stringify(sessions));
-      console.log(`[DataLogger] Successfully imported ${sessions.length} sessions.`);
-    } catch (error) {
-      console.error("[DataLogger] Failed to import sessions:", error);
-    }
+
+  public clearAllSessions() {
+    localStorage.removeItem(this.storageKey);
+    localStorage.removeItem(this.lastSessionKey);
   }
 }
 
 export const logger = new DataLogger();
+

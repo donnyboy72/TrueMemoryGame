@@ -1,0 +1,31 @@
+{
+  "sessionId": 9,
+  "sessionIndex": 9,
+  "checkpoints": [
+    {
+      "checkpointIndex": 1,
+      "sessionDuration": 65,
+      "moves": 480,
+      "accuracy": 0.75,
+      "avgReactionTime": 435,
+      "errorRate": 0.06944444444444445,
+      "errorTypeBreakdown": {
+        "memoryErrors": 0.05,
+        "motorErrors": 0.02
+      },
+      "timeSinceLastCheckpoint": 0
+    }
+  ],
+  "avgAccuracy": 0.75,
+  "avgReactionTime": 435,
+  "avgErrorRate": 0.06944444444444445,
+  "task_type": "memory_sequence",
+  "number_of_trials": 480,
+  "max_sequence_length": 0,
+  "average_accuracy": 0.75,
+  "average_reaction_time_ms": 435,
+  "average_spatial_distance_error": 0.06944444444444445,
+  "sessionDuration": 65,
+  "timeSinceLastSession": 0,
+  "user_id": "a4786851f526"
+}

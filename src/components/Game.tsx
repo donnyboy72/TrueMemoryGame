@@ -17,9 +17,11 @@ const Game: React.FC<{ userID: string }> = ({ userID }) => {
     sequence,
     isUserTurn,
     startNewSession,
+    startNewGame,
     handleTileClick,
     advanceToNextTrial,
-    finishGame,
+    addCheckpoint,
+    finishSession,
     startInputPhase,
     SEQUENCE_DELAY,
     STIMULUS_DURATION
@@ -38,27 +40,37 @@ const Game: React.FC<{ userID: string }> = ({ userID }) => {
     if (status === 'correct') {
       advanceToNextTrial();
     } else if (status === 'incorrect') {
-      // End the game on any incorrect answer
-      const session = finishGame();
-      if (session) {
-        // 1. Classification
-        const result = classifySession({
-          mean_accuracy: session.average_accuracy,
-          mean_reaction_time_ms: session.average_reaction_time_ms,
-          mean_spatial_distance_error: session.average_spatial_distance_error
-        });
-        setClassificationResult(result);
-
-        // 2. Save to Server (HIPAA-safe)
-        try {
-          await saveUserSession(userID, session);
-          console.log("Session saved to server successfully.");
-        } catch (err) {
-          console.error("Failed to save session to server:", err);
-        }
-      }
-      setShowResults(true);
+      // Add a checkpoint for the game just finished
+      addCheckpoint();
+      // Force a re-render or status change if needed, though status is managed by hook
+      // Here we rely on the fact that we can transition to a summary state
     }
+  };
+
+  const handleContinueRehab = () => {
+    startNewGame();
+  };
+
+  const handleFinishSession = async () => {
+    const session = finishSession();
+    if (session) {
+      // 1. Long-term Classification
+      const result = classifySession({
+        mean_accuracy: session.avgAccuracy,
+        mean_reaction_time_ms: session.avgReactionTime,
+        mean_spatial_distance_error: session.avgErrorRate
+      });
+      setClassificationResult(result);
+
+      // 2. Save to Server (HIPAA-safe)
+      try {
+        await saveUserSession(userID, session);
+        console.log("Session saved to server successfully.");
+      } catch (err) {
+        console.error("Failed to save session to server:", err);
+      }
+    }
+    setShowResults(true);
   };
 
   const handlePlayAgain = () => {
@@ -85,14 +97,18 @@ const Game: React.FC<{ userID: string }> = ({ userID }) => {
       case 'incorrect':
         return (
           <div className="status-message">
-            <p className="feedback-incorrect">Incorrect. Game Over.</p>
-            <button onClick={handleNext}>Show Results</button>
+            <p className="feedback-incorrect">Incorrect.</p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}>
+               <button onClick={handleContinueRehab}>Continue Rehab</button>
+               <button onClick={handleFinishSession} style={{ background: '#666' }}>Finish Session</button>
+            </div>
           </div>
         );
       default:
         return null;
     }
   };
+
 
   if (!sessionStarted) {
     return (

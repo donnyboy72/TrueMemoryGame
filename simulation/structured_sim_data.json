@@ -1,0 +1,3662 @@
+[
+  {
+    "userId": "user_663da59a",
+    "archetype": "Normal",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 319,
+        "moves": 21,
+        "accuracy": 0.9222697389511739,
+        "avgReactionTime": 258.1674563043281,
+        "errorRate": 0.1429558964522988,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.07,
+          "motorErrors": 0.07
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 243,
+        "moves": 12,
+        "accuracy": 0.9298658420042168,
+        "avgReactionTime": 300.00099751476597,
+        "errorRate": 0.17719215383142076,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 84951,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 295,
+        "moves": 22,
+        "accuracy": 0.9146085255542207,
+        "avgReactionTime": 279.40824244054494,
+        "errorRate": 0.2463887975512948,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.12,
+          "motorErrors": 0.12
+        },
+        "timeSinceLastSession": 8286,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 75,
+        "moves": 23,
+        "accuracy": 0.9341665669864226,
+        "avgReactionTime": 274.49587100800244,
+        "errorRate": 0.26145523313645425,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.13,
+          "motorErrors": 0.13
+        },
+        "timeSinceLastSession": 106714,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 121,
+        "moves": 17,
+        "accuracy": 0.9473539452319121,
+        "avgReactionTime": 272.7941646117569,
+        "errorRate": 0.17243745624091278,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 54228,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 189,
+        "moves": 30,
+        "accuracy": 0.9461574722721052,
+        "avgReactionTime": 285.3951152510351,
+        "errorRate": 0.30342715078749655,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.15,
+          "motorErrors": 0.15
+        },
+        "timeSinceLastSession": 27325,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 275,
+        "moves": 30,
+        "accuracy": 0.936584931623056,
+        "avgReactionTime": 246.5621992537798,
+        "errorRate": 0.22032600614322573,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.11,
+          "motorErrors": 0.11
+        },
+        "timeSinceLastSession": 51681,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 334,
+        "moves": 20,
+        "accuracy": 0.9416202740500619,
+        "avgReactionTime": 269.09955313687385,
+        "errorRate": 0.19568435490561864,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.1,
+          "motorErrors": 0.1
+        },
+        "timeSinceLastSession": 103556,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_5e2983dc",
+    "archetype": "Normal",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 358,
+        "moves": 29,
+        "accuracy": 0.9230607246213584,
+        "avgReactionTime": 265.30158361499355,
+        "errorRate": 0.19011689042208446,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.1,
+          "motorErrors": 0.1
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 331,
+        "moves": 13,
+        "accuracy": 0.9268653766589817,
+        "avgReactionTime": 275.92601029841717,
+        "errorRate": 0.21705741036134155,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.11,
+          "motorErrors": 0.11
+        },
+        "timeSinceLastSession": 85747,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 183,
+        "moves": 15,
+        "accuracy": 0.9549054407294891,
+        "avgReactionTime": 275.6360763729373,
+        "errorRate": 0.20708658175138764,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.1,
+          "motorErrors": 0.1
+        },
+        "timeSinceLastSession": 116726,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 99,
+        "moves": 29,
+        "accuracy": 0.9277606354453353,
+        "avgReactionTime": 275.47551925342356,
+        "errorRate": 0.17332240489487324,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 67485,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 206,
+        "moves": 15,
+        "accuracy": 0.6578936956404454,
+        "avgReactionTime": 425.44189321259785,
+        "errorRate": 0.25946187991652386,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.13,
+          "motorErrors": 0.13
+        },
+        "timeSinceLastSession": 11803,
+        "isOutlier": true,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 358,
+        "moves": 23,
+        "accuracy": 0.9478595441077331,
+        "avgReactionTime": 253.37504880069517,
+        "errorRate": 0.22418282987133217,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.11,
+          "motorErrors": 0.11
+        },
+        "timeSinceLastSession": 174423,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 265,
+        "moves": 19,
+        "accuracy": 0.9375631259784746,
+        "avgReactionTime": 240.26264319654345,
+        "errorRate": 0.14374441892730516,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.07,
+          "motorErrors": 0.07
+        },
+        "timeSinceLastSession": 61681,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_b86fb4dc",
+    "archetype": "Normal",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 149,
+        "moves": 18,
+        "accuracy": 0.915907246257932,
+        "avgReactionTime": 276.38107572256155,
+        "errorRate": 0.1612176303815002,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.08,
+          "motorErrors": 0.08
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 72,
+        "moves": 23,
+        "accuracy": 0.9384386819302001,
+        "avgReactionTime": 283.30049207578196,
+        "errorRate": 0.1602072025049863,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.08,
+          "motorErrors": 0.08
+        },
+        "timeSinceLastSession": 39488,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 320,
+        "moves": 22,
+        "accuracy": 0.9317139759083466,
+        "avgReactionTime": 288.23303762455384,
+        "errorRate": 0.23632944514576873,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.12,
+          "motorErrors": 0.12
+        },
+        "timeSinceLastSession": 148816,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 223,
+        "moves": 31,
+        "accuracy": 0.9476438838195037,
+        "avgReactionTime": 286.93777812371445,
+        "errorRate": 0.13189698311717005,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.07,
+          "motorErrors": 0.07
+        },
+        "timeSinceLastSession": 88617,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 262,
+        "moves": 27,
+        "accuracy": 0.9447659587112984,
+        "avgReactionTime": 318.871476242688,
+        "errorRate": 0.10584387143464408,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.05,
+          "motorErrors": 0.05
+        },
+        "timeSinceLastSession": 174923,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 323,
+        "moves": 25,
+        "accuracy": 0.954981846432199,
+        "avgReactionTime": 260.84919134581656,
+        "errorRate": 0.13164410436194068,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.07,
+          "motorErrors": 0.07
+        },
+        "timeSinceLastSession": 63950,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 85,
+        "moves": 24,
+        "accuracy": 0.9503723660501707,
+        "avgReactionTime": 271.7361117917205,
+        "errorRate": 0.270358103360516,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.14,
+          "motorErrors": 0.14
+        },
+        "timeSinceLastSession": 129115,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 74,
+        "moves": 17,
+        "accuracy": 0.9550451779845117,
+        "avgReactionTime": 270.18524800244586,
+        "errorRate": 0.25168468899075136,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.13,
+          "motorErrors": 0.13
+        },
+        "timeSinceLastSession": 79802,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 193,
+        "moves": 21,
+        "accuracy": 0.9672082249325551,
+        "avgReactionTime": 259.64026757629495,
+        "errorRate": 0.15522998751972988,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.08,
+          "motorErrors": 0.08
+        },
+        "timeSinceLastSession": 82925,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 10,
+        "sessionDuration": 224,
+        "moves": 24,
+        "accuracy": 0.9647420026515121,
+        "avgReactionTime": 210.89659134783682,
+        "errorRate": 0.12028231848658595,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.06,
+          "motorErrors": 0.06
+        },
+        "timeSinceLastSession": 79146,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_e5724cb9",
+    "archetype": "Normal",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 89,
+        "moves": 28,
+        "accuracy": 0.6603183169796075,
+        "avgReactionTime": 490.1581999388927,
+        "errorRate": 0.2701662004610015,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.14,
+          "motorErrors": 0.14
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": true,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 285,
+        "moves": 25,
+        "accuracy": 0.9317914035436584,
+        "avgReactionTime": 274.54364405309167,
+        "errorRate": 0.30616806987265915,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.15,
+          "motorErrors": 0.15
+        },
+        "timeSinceLastSession": 141215,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 138,
+        "moves": 25,
+        "accuracy": 0.9285055037927278,
+        "avgReactionTime": 317.8378479353729,
+        "errorRate": 0.30077790418917555,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.15,
+          "motorErrors": 0.15
+        },
+        "timeSinceLastSession": 119093,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 221,
+        "moves": 16,
+        "accuracy": 0.9421529857136717,
+        "avgReactionTime": 265.7419126335773,
+        "errorRate": 0.23955967618475085,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.12,
+          "motorErrors": 0.12
+        },
+        "timeSinceLastSession": 166774,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 302,
+        "moves": 18,
+        "accuracy": 0.9288397161823009,
+        "avgReactionTime": 285.08990103590725,
+        "errorRate": 0.16047578434596765,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.08,
+          "motorErrors": 0.08
+        },
+        "timeSinceLastSession": 88968,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_e60a7102",
+    "archetype": "Normal",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 152,
+        "moves": 24,
+        "accuracy": 0.9168384756894322,
+        "avgReactionTime": 316.5299346078042,
+        "errorRate": 0.2009235091847831,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.1,
+          "motorErrors": 0.1
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 161,
+        "moves": 22,
+        "accuracy": 0.9259139574139688,
+        "avgReactionTime": 285.83198082519505,
+        "errorRate": 0.17836996961428672,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 148191,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 142,
+        "moves": 24,
+        "accuracy": 0.9330864762809662,
+        "avgReactionTime": 276.09994235249906,
+        "errorRate": 0.1860280270184906,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 136865,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 81,
+        "moves": 21,
+        "accuracy": 0.9432121503008404,
+        "avgReactionTime": 289.441254902685,
+        "errorRate": 0.1457804828856532,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.07,
+          "motorErrors": 0.07
+        },
+        "timeSinceLastSession": 157947,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 110,
+        "moves": 13,
+        "accuracy": 0.9326891435584911,
+        "avgReactionTime": 270.9791323815198,
+        "errorRate": 0.25524870239639186,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.13,
+          "motorErrors": 0.13
+        },
+        "timeSinceLastSession": 24535,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 270,
+        "moves": 17,
+        "accuracy": 0.9532200927028341,
+        "avgReactionTime": 285.03628188089016,
+        "errorRate": 0.1833989700189841,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 151528,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 204,
+        "moves": 17,
+        "accuracy": 0.9583341040806219,
+        "avgReactionTime": 288.6264032726763,
+        "errorRate": 0.2030925562064225,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.1,
+          "motorErrors": 0.1
+        },
+        "timeSinceLastSession": 48550,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 335,
+        "moves": 14,
+        "accuracy": 0.9485798427314905,
+        "avgReactionTime": 275.8567471480503,
+        "errorRate": 0.1869039218846106,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 13759,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 162,
+        "moves": 24,
+        "accuracy": 0.676135257811699,
+        "avgReactionTime": 433.8452125387545,
+        "errorRate": 0.4558244060771403,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.23,
+          "motorErrors": 0.23
+        },
+        "timeSinceLastSession": 9143,
+        "isOutlier": true,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_5c02a4c3",
+    "archetype": "Normal",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 291,
+        "moves": 20,
+        "accuracy": 0.9289503444624313,
+        "avgReactionTime": 281.1087275429229,
+        "errorRate": 0.28642416324939757,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.14,
+          "motorErrors": 0.14
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 262,
+        "moves": 16,
+        "accuracy": 0.9231786201687696,
+        "avgReactionTime": 292.84584909510625,
+        "errorRate": 0.1070439202303462,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.05,
+          "motorErrors": 0.05
+        },
+        "timeSinceLastSession": 136684,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 216,
+        "moves": 26,
+        "accuracy": 0.9242648043042958,
+        "avgReactionTime": 266.0847748791535,
+        "errorRate": 0.2785062539137008,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.14,
+          "motorErrors": 0.14
+        },
+        "timeSinceLastSession": 12213,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 135,
+        "moves": 29,
+        "accuracy": 0.9377919103261365,
+        "avgReactionTime": 257.2004048582644,
+        "errorRate": 0.20284674755191354,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.1,
+          "motorErrors": 0.1
+        },
+        "timeSinceLastSession": 82364,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 358,
+        "moves": 16,
+        "accuracy": 0.9356068253951328,
+        "avgReactionTime": 296.94131151411426,
+        "errorRate": 0.27228933090934077,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.14,
+          "motorErrors": 0.14
+        },
+        "timeSinceLastSession": 85090,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 163,
+        "moves": 16,
+        "accuracy": 0.9402621797371763,
+        "avgReactionTime": 279.66867268863797,
+        "errorRate": 0.20491443586613353,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.1,
+          "motorErrors": 0.1
+        },
+        "timeSinceLastSession": 93128,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 169,
+        "moves": 20,
+        "accuracy": 0.9423466817145058,
+        "avgReactionTime": 231.8028137897733,
+        "errorRate": 0.28364829834454997,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.14,
+          "motorErrors": 0.14
+        },
+        "timeSinceLastSession": 47066,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 303,
+        "moves": 13,
+        "accuracy": 0.9472497477270119,
+        "avgReactionTime": 298.0534659432912,
+        "errorRate": 0.17989929996099002,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.09,
+          "motorErrors": 0.09
+        },
+        "timeSinceLastSession": 104977,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 272,
+        "moves": 12,
+        "accuracy": 0.9529494142002762,
+        "avgReactionTime": 231.77762466663836,
+        "errorRate": 0.25214619420860795,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.13,
+          "motorErrors": 0.13
+        },
+        "timeSinceLastSession": 123022,
+        "isOutlier": false,
+        "predictedGroup": "well_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_d2d865fc",
+    "archetype": "Mild Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 73,
+        "moves": 23,
+        "accuracy": 0.6868049771030758,
+        "avgReactionTime": 472.8921441585112,
+        "errorRate": 1.312019210793106,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.92,
+          "motorErrors": 0.39
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 343,
+        "moves": 28,
+        "accuracy": 0.6424213137204927,
+        "avgReactionTime": 561.749184529261,
+        "errorRate": 1.2645041796189516,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.89,
+          "motorErrors": 0.38
+        },
+        "timeSinceLastSession": 86421,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 243,
+        "moves": 29,
+        "accuracy": 0.4949075154826455,
+        "avgReactionTime": 771.2245591563349,
+        "errorRate": 2.4707779772951644,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.73,
+          "motorErrors": 0.74
+        },
+        "timeSinceLastSession": 118389,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 86,
+        "moves": 31,
+        "accuracy": 0.7159807023830923,
+        "avgReactionTime": 604.9224289886304,
+        "errorRate": 1.4697849302376642,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.03,
+          "motorErrors": 0.44
+        },
+        "timeSinceLastSession": 9609,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 336,
+        "moves": 25,
+        "accuracy": 0.7183070852437603,
+        "avgReactionTime": 586.6524572454485,
+        "errorRate": 1.2870749649992956,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.9,
+          "motorErrors": 0.39
+        },
+        "timeSinceLastSession": 46892,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 172,
+        "moves": 24,
+        "accuracy": 0.7333220992376376,
+        "avgReactionTime": 683.2596378092771,
+        "errorRate": 1.1547558376543916,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.81,
+          "motorErrors": 0.35
+        },
+        "timeSinceLastSession": 171986,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_f66acaa3",
+    "archetype": "Mild Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 329,
+        "moves": 21,
+        "accuracy": 0.6881897332765914,
+        "avgReactionTime": 544.6882906721714,
+        "errorRate": 1.1233229959989786,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.79,
+          "motorErrors": 0.34
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 111,
+        "moves": 23,
+        "accuracy": 0.6680490163934696,
+        "avgReactionTime": 480.70616373132776,
+        "errorRate": 1.625508200630179,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.14,
+          "motorErrors": 0.49
+        },
+        "timeSinceLastSession": 16485,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 110,
+        "moves": 31,
+        "accuracy": 0.6764365812619971,
+        "avgReactionTime": 580.6610398168375,
+        "errorRate": 1.1678052949790327,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.82,
+          "motorErrors": 0.35
+        },
+        "timeSinceLastSession": 34923,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 60,
+        "moves": 13,
+        "accuracy": 0.6872417136883135,
+        "avgReactionTime": 549.9515667606184,
+        "errorRate": 1.4126605786950148,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.99,
+          "motorErrors": 0.42
+        },
+        "timeSinceLastSession": 20113,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 60,
+        "moves": 20,
+        "accuracy": 0.8535380022430749,
+        "avgReactionTime": 642.5465802320646,
+        "errorRate": 1.2978412905438637,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.91,
+          "motorErrors": 0.39
+        },
+        "timeSinceLastSession": 146332,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 315,
+        "moves": 23,
+        "accuracy": 0.7374925650736736,
+        "avgReactionTime": 655.1493091600128,
+        "errorRate": 1.2363583076594409,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.87,
+          "motorErrors": 0.37
+        },
+        "timeSinceLastSession": 75332,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 144,
+        "moves": 30,
+        "accuracy": 0.7212843317427468,
+        "avgReactionTime": 687.8030532794774,
+        "errorRate": 1.3818615283276485,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.97,
+          "motorErrors": 0.41
+        },
+        "timeSinceLastSession": 166604,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_351b8f03",
+    "archetype": "Mild Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 332,
+        "moves": 22,
+        "accuracy": 0.6427965566957365,
+        "avgReactionTime": 526.4133347769716,
+        "errorRate": 1.3052263183600787,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.91,
+          "motorErrors": 0.39
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 66,
+        "moves": 25,
+        "accuracy": 0.7098892947687944,
+        "avgReactionTime": 600.0360404471976,
+        "errorRate": 1.6308664345326613,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.14,
+          "motorErrors": 0.49
+        },
+        "timeSinceLastSession": 107882,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 176,
+        "moves": 16,
+        "accuracy": 0.7435795877501945,
+        "avgReactionTime": 625.2188433201857,
+        "errorRate": 1.093268900113673,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.77,
+          "motorErrors": 0.33
+        },
+        "timeSinceLastSession": 53323,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 231,
+        "moves": 29,
+        "accuracy": 0.69833950594787,
+        "avgReactionTime": 549.4310623643597,
+        "errorRate": 1.5136233649856972,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.06,
+          "motorErrors": 0.45
+        },
+        "timeSinceLastSession": 117495,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 236,
+        "moves": 25,
+        "accuracy": 0.7125562464523917,
+        "avgReactionTime": 578.9309889067976,
+        "errorRate": 1.2157117369714074,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.85,
+          "motorErrors": 0.36
+        },
+        "timeSinceLastSession": 111713,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 97,
+        "moves": 24,
+        "accuracy": 0.7961572147367413,
+        "avgReactionTime": 595.5689337878655,
+        "errorRate": 1.6970943760515367,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.19,
+          "motorErrors": 0.51
+        },
+        "timeSinceLastSession": 52178,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 246,
+        "moves": 18,
+        "accuracy": 0.5203633690302311,
+        "avgReactionTime": 929.0457875872617,
+        "errorRate": 2.673900838192928,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.87,
+          "motorErrors": 0.8
+        },
+        "timeSinceLastSession": 64075,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_9063a97d",
+    "archetype": "Mild Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 345,
+        "moves": 21,
+        "accuracy": 0.6815137526912637,
+        "avgReactionTime": 479.34954631849826,
+        "errorRate": 1.4623838720569304,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.02,
+          "motorErrors": 0.44
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 108,
+        "moves": 30,
+        "accuracy": 0.6592071476337452,
+        "avgReactionTime": 568.0990282384422,
+        "errorRate": 1.2086381880161348,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.85,
+          "motorErrors": 0.36
+        },
+        "timeSinceLastSession": 102669,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 352,
+        "moves": 22,
+        "accuracy": 0.743595424398062,
+        "avgReactionTime": 475.2419174223482,
+        "errorRate": 1.214117683406111,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.85,
+          "motorErrors": 0.36
+        },
+        "timeSinceLastSession": 120250,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 270,
+        "moves": 22,
+        "accuracy": 0.7202457869382265,
+        "avgReactionTime": 593.6789744607704,
+        "errorRate": 1.3377800912568212,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.94,
+          "motorErrors": 0.4
+        },
+        "timeSinceLastSession": 79744,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 236,
+        "moves": 21,
+        "accuracy": 0.7032826535622958,
+        "avgReactionTime": 625.9164773009634,
+        "errorRate": 1.4073690773091019,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.99,
+          "motorErrors": 0.42
+        },
+        "timeSinceLastSession": 92887,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 106,
+        "moves": 12,
+        "accuracy": 0.7133558494822682,
+        "avgReactionTime": 620.540438872046,
+        "errorRate": 1.6510534260398617,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.16,
+          "motorErrors": 0.5
+        },
+        "timeSinceLastSession": 24544,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 191,
+        "moves": 18,
+        "accuracy": 0.73339455979962,
+        "avgReactionTime": 603.4257083032513,
+        "errorRate": 1.3976813779978101,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.98,
+          "motorErrors": 0.42
+        },
+        "timeSinceLastSession": 133091,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 344,
+        "moves": 12,
+        "accuracy": 0.7672760649376066,
+        "avgReactionTime": 706.7213598010887,
+        "errorRate": 1.605848403490707,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.12,
+          "motorErrors": 0.48
+        },
+        "timeSinceLastSession": 133602,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_cec644c0",
+    "archetype": "Mild Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 195,
+        "moves": 20,
+        "accuracy": 0.6858921142698248,
+        "avgReactionTime": 560.131071764037,
+        "errorRate": 1.7429130201917284,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.22,
+          "motorErrors": 0.52
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 348,
+        "moves": 27,
+        "accuracy": 0.5030866816183974,
+        "avgReactionTime": 727.3895467620035,
+        "errorRate": 3.338207271353606,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.34,
+          "motorErrors": 1
+        },
+        "timeSinceLastSession": 43299,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 133,
+        "moves": 26,
+        "accuracy": 0.6746039053291756,
+        "avgReactionTime": 586.9411629665549,
+        "errorRate": 1.485998371825115,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.04,
+          "motorErrors": 0.45
+        },
+        "timeSinceLastSession": 91561,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 100,
+        "moves": 12,
+        "accuracy": 0.7628987419289653,
+        "avgReactionTime": 599.6867546413697,
+        "errorRate": 1.4110365801651856,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.99,
+          "motorErrors": 0.42
+        },
+        "timeSinceLastSession": 168444,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 314,
+        "moves": 16,
+        "accuracy": 0.7491475457931759,
+        "avgReactionTime": 585.5282011621233,
+        "errorRate": 1.5353938374144454,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.07,
+          "motorErrors": 0.46
+        },
+        "timeSinceLastSession": 94416,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 70,
+        "moves": 28,
+        "accuracy": 0.7296742217227732,
+        "avgReactionTime": 638.3215562091274,
+        "errorRate": 1.4596609629186337,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.02,
+          "motorErrors": 0.44
+        },
+        "timeSinceLastSession": 10439,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 144,
+        "moves": 13,
+        "accuracy": 0.7972808762939928,
+        "avgReactionTime": 641.4889981970084,
+        "errorRate": 1.149950068422355,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.8,
+          "motorErrors": 0.34
+        },
+        "timeSinceLastSession": 113834,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 247,
+        "moves": 20,
+        "accuracy": 0.7534462332740179,
+        "avgReactionTime": 697.7788463466021,
+        "errorRate": 1.3600770077660134,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.95,
+          "motorErrors": 0.41
+        },
+        "timeSinceLastSession": 143250,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_27469bf7",
+    "archetype": "Mild Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 227,
+        "moves": 20,
+        "accuracy": 0.7243253945183143,
+        "avgReactionTime": 528.5995568993577,
+        "errorRate": 1.244965884643979,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.87,
+          "motorErrors": 0.37
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 254,
+        "moves": 29,
+        "accuracy": 0.6408910918631929,
+        "avgReactionTime": 568.0944619282002,
+        "errorRate": 1.2851153828764805,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.9,
+          "motorErrors": 0.39
+        },
+        "timeSinceLastSession": 151281,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 353,
+        "moves": 30,
+        "accuracy": 0.7078260522428994,
+        "avgReactionTime": 531.4617007970049,
+        "errorRate": 1.4922051868815907,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.04,
+          "motorErrors": 0.45
+        },
+        "timeSinceLastSession": 78345,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 299,
+        "moves": 18,
+        "accuracy": 0.7209545540221289,
+        "avgReactionTime": 611.4203639773762,
+        "errorRate": 1.0770631407972944,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.75,
+          "motorErrors": 0.32
+        },
+        "timeSinceLastSession": 128665,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 140,
+        "moves": 19,
+        "accuracy": 0.7332061934588938,
+        "avgReactionTime": 599.2519784682759,
+        "errorRate": 1.3278245786976381,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.93,
+          "motorErrors": 0.4
+        },
+        "timeSinceLastSession": 50221,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 86,
+        "moves": 26,
+        "accuracy": 0.719812691755395,
+        "avgReactionTime": 616.4595307795644,
+        "errorRate": 1.5502570965377804,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.09,
+          "motorErrors": 0.47
+        },
+        "timeSinceLastSession": 98559,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_c2e678e2",
+    "archetype": "Severe Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 259,
+        "moves": 21,
+        "accuracy": 0.3255087062929729,
+        "avgReactionTime": 894.637646589775,
+        "errorRate": 3.783136020447259,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.65,
+          "motorErrors": 1.13
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 263,
+        "moves": 19,
+        "accuracy": 0.43034707285068957,
+        "avgReactionTime": 784.5726993572418,
+        "errorRate": 3.62596017167664,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.54,
+          "motorErrors": 1.09
+        },
+        "timeSinceLastSession": 36378,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 212,
+        "moves": 19,
+        "accuracy": 0.36318692856322027,
+        "avgReactionTime": 918.3497806224307,
+        "errorRate": 3.6158980855209624,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.53,
+          "motorErrors": 1.08
+        },
+        "timeSinceLastSession": 151356,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 131,
+        "moves": 15,
+        "accuracy": 0.31688245493409206,
+        "avgReactionTime": 1084.7141568383504,
+        "errorRate": 3.996048067940609,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.8,
+          "motorErrors": 1.2
+        },
+        "timeSinceLastSession": 69797,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 169,
+        "moves": 17,
+        "accuracy": 0.4124809789942985,
+        "avgReactionTime": 966.4414891288819,
+        "errorRate": 4.167801801904611,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.92,
+          "motorErrors": 1.25
+        },
+        "timeSinceLastSession": 13725,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 142,
+        "moves": 29,
+        "accuracy": 0.46920062582264993,
+        "avgReactionTime": 968.4832953479944,
+        "errorRate": 3.4761303874916685,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.43,
+          "motorErrors": 1.04
+        },
+        "timeSinceLastSession": 141244,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 85,
+        "moves": 29,
+        "accuracy": 0.4067662101501648,
+        "avgReactionTime": 961.4641174347151,
+        "errorRate": 3.8614898247821476,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.7,
+          "motorErrors": 1.16
+        },
+        "timeSinceLastSession": 127780,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_aef75894",
+    "archetype": "Severe Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 170,
+        "moves": 22,
+        "accuracy": 0.41980879286608297,
+        "avgReactionTime": 770.0010699039805,
+        "errorRate": 3.5738758058900086,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.5,
+          "motorErrors": 1.07
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 85,
+        "moves": 29,
+        "accuracy": 0.3200145377532055,
+        "avgReactionTime": 1303.9755998845735,
+        "errorRate": 7.971803981705116,
+        "errorTypeBreakdown": {
+          "memoryErrors": 5.58,
+          "motorErrors": 2.39
+        },
+        "timeSinceLastSession": 53045,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 328,
+        "moves": 31,
+        "accuracy": 0.3927471254663049,
+        "avgReactionTime": 865.0362434268798,
+        "errorRate": 3.937203665578912,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.76,
+          "motorErrors": 1.18
+        },
+        "timeSinceLastSession": 114625,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 206,
+        "moves": 21,
+        "accuracy": 0.42703085726678175,
+        "avgReactionTime": 848.6256259585907,
+        "errorRate": 3.4902730941381708,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.44,
+          "motorErrors": 1.05
+        },
+        "timeSinceLastSession": 88242,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 112,
+        "moves": 29,
+        "accuracy": 0.38969180394234926,
+        "avgReactionTime": 911.7595687727156,
+        "errorRate": 3.3162105221287517,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.32,
+          "motorErrors": 0.99
+        },
+        "timeSinceLastSession": 20829,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 202,
+        "moves": 16,
+        "accuracy": 0.4333447131407438,
+        "avgReactionTime": 757.3719365034246,
+        "errorRate": 4.1002797699085,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.87,
+          "motorErrors": 1.23
+        },
+        "timeSinceLastSession": 110689,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 296,
+        "moves": 22,
+        "accuracy": 0.485125874382489,
+        "avgReactionTime": 997.885917979351,
+        "errorRate": 4.601634106602504,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.22,
+          "motorErrors": 1.38
+        },
+        "timeSinceLastSession": 17568,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 279,
+        "moves": 26,
+        "accuracy": 0.49951257368516405,
+        "avgReactionTime": 1077.4441029677016,
+        "errorRate": 3.234112622365891,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.26,
+          "motorErrors": 0.97
+        },
+        "timeSinceLastSession": 170195,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 77,
+        "moves": 22,
+        "accuracy": 0.5085113086912849,
+        "avgReactionTime": 1070.9214448058674,
+        "errorRate": 4.040264961714876,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.83,
+          "motorErrors": 1.21
+        },
+        "timeSinceLastSession": 111111,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 10,
+        "sessionDuration": 81,
+        "moves": 18,
+        "accuracy": 0.512342138925732,
+        "avgReactionTime": 1113.7935387025307,
+        "errorRate": 4.03723815640198,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.83,
+          "motorErrors": 1.21
+        },
+        "timeSinceLastSession": 92785,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_e9e694b4",
+    "archetype": "Severe Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 240,
+        "moves": 30,
+        "accuracy": 0.3646048928789401,
+        "avgReactionTime": 921.6000961294308,
+        "errorRate": 4.009432195587355,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.81,
+          "motorErrors": 1.2
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 262,
+        "moves": 16,
+        "accuracy": 0.43225712587151244,
+        "avgReactionTime": 924.8546106135979,
+        "errorRate": 3.896992730971209,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.73,
+          "motorErrors": 1.17
+        },
+        "timeSinceLastSession": 138210,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 159,
+        "moves": 29,
+        "accuracy": 0.4793584183412759,
+        "avgReactionTime": 1046.7287397738953,
+        "errorRate": 3.7312147629963945,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.61,
+          "motorErrors": 1.12
+        },
+        "timeSinceLastSession": 132167,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 311,
+        "moves": 25,
+        "accuracy": 0.445719033327633,
+        "avgReactionTime": 996.9855733912639,
+        "errorRate": 3.9354910959852987,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.75,
+          "motorErrors": 1.18
+        },
+        "timeSinceLastSession": 127868,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 306,
+        "moves": 18,
+        "accuracy": 0.3551597802918216,
+        "avgReactionTime": 1083.3938538206528,
+        "errorRate": 2.9119195061184273,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.04,
+          "motorErrors": 0.87
+        },
+        "timeSinceLastSession": 160441,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 309,
+        "moves": 13,
+        "accuracy": 0.4565148545665817,
+        "avgReactionTime": 826.2527141698681,
+        "errorRate": 3.601865372220687,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.52,
+          "motorErrors": 1.08
+        },
+        "timeSinceLastSession": 10524,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 70,
+        "moves": 15,
+        "accuracy": 0.5021234173932426,
+        "avgReactionTime": 1043.9822227302657,
+        "errorRate": 4.595296520940912,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.22,
+          "motorErrors": 1.38
+        },
+        "timeSinceLastSession": 45577,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 138,
+        "moves": 25,
+        "accuracy": 0.4516879654787264,
+        "avgReactionTime": 962.9229543560014,
+        "errorRate": 3.877544407656877,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.71,
+          "motorErrors": 1.16
+        },
+        "timeSinceLastSession": 85269,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_039577c3",
+    "archetype": "Severe Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 103,
+        "moves": 22,
+        "accuracy": 0.41657205213799653,
+        "avgReactionTime": 832.3730723556871,
+        "errorRate": 4.143549909522293,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.9,
+          "motorErrors": 1.24
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 216,
+        "moves": 20,
+        "accuracy": 0.3880087584547419,
+        "avgReactionTime": 751.6150445983384,
+        "errorRate": 3.4398472766122503,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.41,
+          "motorErrors": 1.03
+        },
+        "timeSinceLastSession": 15742,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 336,
+        "moves": 29,
+        "accuracy": 0.4208003148608277,
+        "avgReactionTime": 866.2529419612581,
+        "errorRate": 3.01037069987166,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.11,
+          "motorErrors": 0.9
+        },
+        "timeSinceLastSession": 112466,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 214,
+        "moves": 24,
+        "accuracy": 0.41923316269603417,
+        "avgReactionTime": 940.5409374670625,
+        "errorRate": 3.992321100278417,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.79,
+          "motorErrors": 1.2
+        },
+        "timeSinceLastSession": 62810,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 100,
+        "moves": 21,
+        "accuracy": 0.42382208023858026,
+        "avgReactionTime": 963.7746827222572,
+        "errorRate": 3.1177214364442216,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.18,
+          "motorErrors": 0.94
+        },
+        "timeSinceLastSession": 61875,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 307,
+        "moves": 25,
+        "accuracy": 0.40980115039835496,
+        "avgReactionTime": 996.1783287569018,
+        "errorRate": 2.660325412238544,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.86,
+          "motorErrors": 0.8
+        },
+        "timeSinceLastSession": 82662,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 181,
+        "moves": 27,
+        "accuracy": 0.4925652480859896,
+        "avgReactionTime": 1057.9473077643743,
+        "errorRate": 2.997389703416534,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.1,
+          "motorErrors": 0.9
+        },
+        "timeSinceLastSession": 102385,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_5fc0b5a4",
+    "archetype": "Severe Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 290,
+        "moves": 28,
+        "accuracy": 0.3276167205388769,
+        "avgReactionTime": 818.3165765132389,
+        "errorRate": 3.976106135198023,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.78,
+          "motorErrors": 1.19
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 224,
+        "moves": 17,
+        "accuracy": 0.41680168603248313,
+        "avgReactionTime": 1029.5142858102918,
+        "errorRate": 3.391950040317895,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.37,
+          "motorErrors": 1.02
+        },
+        "timeSinceLastSession": 108188,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 218,
+        "moves": 30,
+        "accuracy": 0.32928168486131143,
+        "avgReactionTime": 915.8466698595496,
+        "errorRate": 4.19231231057565,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.93,
+          "motorErrors": 1.26
+        },
+        "timeSinceLastSession": 44039,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 76,
+        "moves": 30,
+        "accuracy": 0.3020966762053633,
+        "avgReactionTime": 995.2764704246964,
+        "errorRate": 3.5794596812065076,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.51,
+          "motorErrors": 1.07
+        },
+        "timeSinceLastSession": 61816,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 114,
+        "moves": 14,
+        "accuracy": 0.35115694682463977,
+        "avgReactionTime": 943.7748235695177,
+        "errorRate": 3.6845274618306068,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.58,
+          "motorErrors": 1.11
+        },
+        "timeSinceLastSession": 88791,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 145,
+        "moves": 15,
+        "accuracy": 0.4063694778686213,
+        "avgReactionTime": 1042.5308938438623,
+        "errorRate": 3.767921087997777,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.64,
+          "motorErrors": 1.13
+        },
+        "timeSinceLastSession": 12935,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 195,
+        "moves": 13,
+        "accuracy": 0.34168756876185885,
+        "avgReactionTime": 1750.0540993694299,
+        "errorRate": 6.0244309366123385,
+        "errorTypeBreakdown": {
+          "memoryErrors": 4.22,
+          "motorErrors": 1.81
+        },
+        "timeSinceLastSession": 131330,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_3e8f3500",
+    "archetype": "Severe Fatigue",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 108,
+        "moves": 13,
+        "accuracy": 0.32141352175328786,
+        "avgReactionTime": 1047.0446558741592,
+        "errorRate": 4.253861192582694,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.98,
+          "motorErrors": 1.28
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 286,
+        "moves": 14,
+        "accuracy": 0.25736460031739544,
+        "avgReactionTime": 1262.3211436170286,
+        "errorRate": 6.1376084176097345,
+        "errorTypeBreakdown": {
+          "memoryErrors": 4.3,
+          "motorErrors": 1.84
+        },
+        "timeSinceLastSession": 32081,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 359,
+        "moves": 21,
+        "accuracy": 0.38123274459899653,
+        "avgReactionTime": 1059.376584557741,
+        "errorRate": 3.6875382468325486,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.58,
+          "motorErrors": 1.11
+        },
+        "timeSinceLastSession": 76311,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 242,
+        "moves": 20,
+        "accuracy": 0.4409860883951623,
+        "avgReactionTime": 960.609732862957,
+        "errorRate": 3.9956570783937044,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.8,
+          "motorErrors": 1.2
+        },
+        "timeSinceLastSession": 51559,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 113,
+        "moves": 30,
+        "accuracy": 0.4598196719531389,
+        "avgReactionTime": 1014.9347552989079,
+        "errorRate": 4.445963484790209,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.11,
+          "motorErrors": 1.33
+        },
+        "timeSinceLastSession": 66017,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 73,
+        "moves": 15,
+        "accuracy": 0.3958501927379798,
+        "avgReactionTime": 1061.5457861785605,
+        "errorRate": 3.449045451097257,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.41,
+          "motorErrors": 1.03
+        },
+        "timeSinceLastSession": 19863,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 255,
+        "moves": 26,
+        "accuracy": 0.5117285202359787,
+        "avgReactionTime": 988.8193986380408,
+        "errorRate": 3.418270464228178,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.39,
+          "motorErrors": 1.03
+        },
+        "timeSinceLastSession": 155848,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 116,
+        "moves": 21,
+        "accuracy": 0.4395606222995257,
+        "avgReactionTime": 1100.798799670981,
+        "errorRate": 3.477972293641594,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.43,
+          "motorErrors": 1.04
+        },
+        "timeSinceLastSession": 30841,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 228,
+        "moves": 13,
+        "accuracy": 0.4714214439959848,
+        "avgReactionTime": 1026.666220886772,
+        "errorRate": 3.6396482235676397,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.55,
+          "motorErrors": 1.09
+        },
+        "timeSinceLastSession": 30855,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 10,
+        "sessionDuration": 195,
+        "moves": 17,
+        "accuracy": 0.5980300533516008,
+        "avgReactionTime": 1028.2869480458664,
+        "errorRate": 3.044585670547447,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.13,
+          "motorErrors": 0.91
+        },
+        "timeSinceLastSession": 52122,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_768c3d76",
+    "archetype": "Motor Impairment",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 188,
+        "moves": 22,
+        "accuracy": 0.8219611552989592,
+        "avgReactionTime": 483.1239887447289,
+        "errorRate": 2.7075523125088075,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.81,
+          "motorErrors": 1.9
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 149,
+        "moves": 14,
+        "accuracy": 0.814046222615283,
+        "avgReactionTime": 428.00627223459753,
+        "errorRate": 2.5644644092424356,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.77,
+          "motorErrors": 1.8
+        },
+        "timeSinceLastSession": 162921,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 115,
+        "moves": 30,
+        "accuracy": 0.8052872411236264,
+        "avgReactionTime": 433.28480360187933,
+        "errorRate": 2.1988971616254718,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.66,
+          "motorErrors": 1.54
+        },
+        "timeSinceLastSession": 165000,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 346,
+        "moves": 27,
+        "accuracy": 0.588445281122014,
+        "avgReactionTime": 682.076098763366,
+        "errorRate": 4.98720495976368,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.5,
+          "motorErrors": 3.49
+        },
+        "timeSinceLastSession": 35560,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 99,
+        "moves": 15,
+        "accuracy": 0.8276009684597607,
+        "avgReactionTime": 498.71104747643983,
+        "errorRate": 1.765230650137997,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.53,
+          "motorErrors": 1.24
+        },
+        "timeSinceLastSession": 37703,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 217,
+        "moves": 25,
+        "accuracy": 0.8196944758854081,
+        "avgReactionTime": 443.4958213684172,
+        "errorRate": 2.6145947324195213,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.78,
+          "motorErrors": 1.83
+        },
+        "timeSinceLastSession": 26357,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_e6cc5625",
+    "archetype": "Motor Impairment",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 358,
+        "moves": 25,
+        "accuracy": 0.8302549580520125,
+        "avgReactionTime": 474.73486199058675,
+        "errorRate": 2.765679986695555,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.83,
+          "motorErrors": 1.94
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 151,
+        "moves": 25,
+        "accuracy": 0.827362550834857,
+        "avgReactionTime": 483.7116362339915,
+        "errorRate": 2.1214965415767817,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.64,
+          "motorErrors": 1.49
+        },
+        "timeSinceLastSession": 82925,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 156,
+        "moves": 21,
+        "accuracy": 0.7910527705283062,
+        "avgReactionTime": 442.700227895591,
+        "errorRate": 2.445012262207129,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.73,
+          "motorErrors": 1.71
+        },
+        "timeSinceLastSession": 123244,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 116,
+        "moves": 12,
+        "accuracy": 0.8118101324567083,
+        "avgReactionTime": 432.182012004479,
+        "errorRate": 2.512655790717651,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.75,
+          "motorErrors": 1.76
+        },
+        "timeSinceLastSession": 129726,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 120,
+        "moves": 13,
+        "accuracy": 0.8220015442834053,
+        "avgReactionTime": 484.5853930502036,
+        "errorRate": 2.287257927722104,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.69,
+          "motorErrors": 1.6
+        },
+        "timeSinceLastSession": 166172,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 329,
+        "moves": 12,
+        "accuracy": 0.8002760631488952,
+        "avgReactionTime": 428.57016963461774,
+        "errorRate": 2.6811653106498134,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.8,
+          "motorErrors": 1.88
+        },
+        "timeSinceLastSession": 155817,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 310,
+        "moves": 31,
+        "accuracy": 0.8213851680457579,
+        "avgReactionTime": 439.0449766850155,
+        "errorRate": 2.2545218326156182,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.68,
+          "motorErrors": 1.58
+        },
+        "timeSinceLastSession": 128864,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 310,
+        "moves": 31,
+        "accuracy": 0.8299626568922999,
+        "avgReactionTime": 417.12490819122786,
+        "errorRate": 2.5884368418917285,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.78,
+          "motorErrors": 1.81
+        },
+        "timeSinceLastSession": 8691,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 251,
+        "moves": 15,
+        "accuracy": 0.8003618262063277,
+        "avgReactionTime": 466.9114495193027,
+        "errorRate": 2.0240445948295167,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.61,
+          "motorErrors": 1.42
+        },
+        "timeSinceLastSession": 21755,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 10,
+        "sessionDuration": 68,
+        "moves": 14,
+        "accuracy": 0.8356541669620139,
+        "avgReactionTime": 465.9966415806307,
+        "errorRate": 1.7995820012994812,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.54,
+          "motorErrors": 1.26
+        },
+        "timeSinceLastSession": 163836,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_ceb9f0d4",
+    "archetype": "Motor Impairment",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 261,
+        "moves": 25,
+        "accuracy": 0.8198306613676826,
+        "avgReactionTime": 403.04303094929986,
+        "errorRate": 2.527243731516806,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.76,
+          "motorErrors": 1.77
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 74,
+        "moves": 30,
+        "accuracy": 0.8008177753171638,
+        "avgReactionTime": 403.6228777517331,
+        "errorRate": 2.245749831839707,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.67,
+          "motorErrors": 1.57
+        },
+        "timeSinceLastSession": 142876,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 309,
+        "moves": 20,
+        "accuracy": 0.7744775983191935,
+        "avgReactionTime": 423.16808512359097,
+        "errorRate": 2.3891689694670597,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.72,
+          "motorErrors": 1.67
+        },
+        "timeSinceLastSession": 27201,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 144,
+        "moves": 28,
+        "accuracy": 0.8189144482740941,
+        "avgReactionTime": 433.3153219759248,
+        "errorRate": 2.5902099882667593,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.78,
+          "motorErrors": 1.81
+        },
+        "timeSinceLastSession": 45394,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 287,
+        "moves": 16,
+        "accuracy": 0.8117870668506103,
+        "avgReactionTime": 494.6040679034307,
+        "errorRate": 2.339199783669433,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.7,
+          "motorErrors": 1.64
+        },
+        "timeSinceLastSession": 154118,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_56c4c0e2",
+    "archetype": "Motor Impairment",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 248,
+        "moves": 13,
+        "accuracy": 0.5575601385533108,
+        "avgReactionTime": 672.5344556988503,
+        "errorRate": 4.12240640185966,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.24,
+          "motorErrors": 2.89
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 111,
+        "moves": 26,
+        "accuracy": 0.8383836292175133,
+        "avgReactionTime": 472.4393358462693,
+        "errorRate": 2.299149567845423,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.69,
+          "motorErrors": 1.61
+        },
+        "timeSinceLastSession": 80354,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 302,
+        "moves": 14,
+        "accuracy": 0.7815913143678014,
+        "avgReactionTime": 445.2345911205192,
+        "errorRate": 1.7505249635306948,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.53,
+          "motorErrors": 1.23
+        },
+        "timeSinceLastSession": 140486,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 183,
+        "moves": 26,
+        "accuracy": 0.561750252926144,
+        "avgReactionTime": 656.1851376580736,
+        "errorRate": 3.0049615253795627,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.9,
+          "motorErrors": 2.1
+        },
+        "timeSinceLastSession": 85263,
+        "isOutlier": true,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 324,
+        "moves": 30,
+        "accuracy": 0.8254403338478611,
+        "avgReactionTime": 479.8502567983326,
+        "errorRate": 2.369185042299225,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.71,
+          "motorErrors": 1.66
+        },
+        "timeSinceLastSession": 10012,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 162,
+        "moves": 29,
+        "accuracy": 0.8137995523081522,
+        "avgReactionTime": 418.4125644103245,
+        "errorRate": 1.7198475552799626,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.52,
+          "motorErrors": 1.2
+        },
+        "timeSinceLastSession": 51191,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 245,
+        "moves": 30,
+        "accuracy": 0.8074463370035747,
+        "avgReactionTime": 437.7932101975911,
+        "errorRate": 1.993949441345725,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.6,
+          "motorErrors": 1.4
+        },
+        "timeSinceLastSession": 75523,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 136,
+        "moves": 12,
+        "accuracy": 0.8081272967135877,
+        "avgReactionTime": 456.5675246425915,
+        "errorRate": 2.456798410264662,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.74,
+          "motorErrors": 1.72
+        },
+        "timeSinceLastSession": 102671,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_0c768605",
+    "archetype": "Motor Impairment",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 140,
+        "moves": 29,
+        "accuracy": 0.827779125017481,
+        "avgReactionTime": 440.0492756795641,
+        "errorRate": 1.9138649547303372,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.57,
+          "motorErrors": 1.34
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 208,
+        "moves": 14,
+        "accuracy": 0.8159387197905473,
+        "avgReactionTime": 451.36364318559606,
+        "errorRate": 1.9772830368069123,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.59,
+          "motorErrors": 1.38
+        },
+        "timeSinceLastSession": 72471,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 277,
+        "moves": 24,
+        "accuracy": 0.8273234829681867,
+        "avgReactionTime": 470.06273282877254,
+        "errorRate": 2.792983383917221,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.84,
+          "motorErrors": 1.96
+        },
+        "timeSinceLastSession": 6710,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 135,
+        "moves": 12,
+        "accuracy": 0.8546219925099108,
+        "avgReactionTime": 466.3134363124794,
+        "errorRate": 2.2479904696154667,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.67,
+          "motorErrors": 1.57
+        },
+        "timeSinceLastSession": 6391,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 261,
+        "moves": 15,
+        "accuracy": 0.8311591656230527,
+        "avgReactionTime": 442.3785469268333,
+        "errorRate": 2.3535691343107654,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.71,
+          "motorErrors": 1.65
+        },
+        "timeSinceLastSession": 139023,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 110,
+        "moves": 26,
+        "accuracy": 0.7995051903361546,
+        "avgReactionTime": 405.8132484715385,
+        "errorRate": 1.7833020963285322,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.53,
+          "motorErrors": 1.25
+        },
+        "timeSinceLastSession": 145904,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 122,
+        "moves": 14,
+        "accuracy": 0.8027016744481011,
+        "avgReactionTime": 422.6633893609871,
+        "errorRate": 2.4687183635274823,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.74,
+          "motorErrors": 1.73
+        },
+        "timeSinceLastSession": 58361,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 200,
+        "moves": 28,
+        "accuracy": 0.8465964898304794,
+        "avgReactionTime": 438.9688404249739,
+        "errorRate": 2.106627702666043,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.63,
+          "motorErrors": 1.47
+        },
+        "timeSinceLastSession": 154133,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 207,
+        "moves": 25,
+        "accuracy": 0.8265838237674467,
+        "avgReactionTime": 455.8573986140685,
+        "errorRate": 2.021638373909999,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.61,
+          "motorErrors": 1.42
+        },
+        "timeSinceLastSession": 91668,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 10,
+        "sessionDuration": 192,
+        "moves": 14,
+        "accuracy": 0.8063751911853018,
+        "avgReactionTime": 474.9690286167664,
+        "errorRate": 2.4575826370528273,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.74,
+          "motorErrors": 1.72
+        },
+        "timeSinceLastSession": 171923,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_75d46d4b",
+    "archetype": "Motor Impairment",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 276,
+        "moves": 25,
+        "accuracy": 0.8398856194481807,
+        "avgReactionTime": 466.2717498240478,
+        "errorRate": 2.188367000827746,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.66,
+          "motorErrors": 1.53
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 91,
+        "moves": 14,
+        "accuracy": 0.8017685048141755,
+        "avgReactionTime": 473.5156312020724,
+        "errorRate": 2.223979173777499,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.67,
+          "motorErrors": 1.56
+        },
+        "timeSinceLastSession": 54068,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 333,
+        "moves": 19,
+        "accuracy": 0.8154927541622123,
+        "avgReactionTime": 457.99544302794385,
+        "errorRate": 2.144701704467003,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.64,
+          "motorErrors": 1.5
+        },
+        "timeSinceLastSession": 35061,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 310,
+        "moves": 25,
+        "accuracy": 0.8208790154124803,
+        "avgReactionTime": 496.3528787738865,
+        "errorRate": 1.6821592012085,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.5,
+          "motorErrors": 1.18
+        },
+        "timeSinceLastSession": 112822,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 331,
+        "moves": 30,
+        "accuracy": 0.8289881653621133,
+        "avgReactionTime": 428.396757559908,
+        "errorRate": 2.4571524174443296,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.74,
+          "motorErrors": 1.72
+        },
+        "timeSinceLastSession": 42555,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 100,
+        "moves": 25,
+        "accuracy": 0.8146644652655972,
+        "avgReactionTime": 494.8015733527606,
+        "errorRate": 2.141142710434021,
+        "errorTypeBreakdown": {
+          "memoryErrors": 0.64,
+          "motorErrors": 1.5
+        },
+        "timeSinceLastSession": 81191,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      }
+    ]
+  },
+  {
+    "userId": "user_8478c2f7",
+    "archetype": "Cognitive Decline",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 189,
+        "moves": 15,
+        "accuracy": 0.47423369569320045,
+        "avgReactionTime": 776.9544119982353,
+        "errorRate": 2.2991136107582153,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.61,
+          "motorErrors": 0.69
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 154,
+        "moves": 14,
+        "accuracy": 0.5146404988265685,
+        "avgReactionTime": 693.580457498982,
+        "errorRate": 2.2982195718800096,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.61,
+          "motorErrors": 0.69
+        },
+        "timeSinceLastSession": 164355,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 339,
+        "moves": 31,
+        "accuracy": 0.5202838201601743,
+        "avgReactionTime": 764.6069798152193,
+        "errorRate": 1.9229414922197172,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.35,
+          "motorErrors": 0.58
+        },
+        "timeSinceLastSession": 101738,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 284,
+        "moves": 31,
+        "accuracy": 0.3638623793631167,
+        "avgReactionTime": 915.325465388657,
+        "errorRate": 2.10396547717671,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.47,
+          "motorErrors": 0.63
+        },
+        "timeSinceLastSession": 11829,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 271,
+        "moves": 21,
+        "accuracy": 0.4368121511543122,
+        "avgReactionTime": 894.6201344727367,
+        "errorRate": 4.069673332329616,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.85,
+          "motorErrors": 1.22
+        },
+        "timeSinceLastSession": 87044,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 178,
+        "moves": 25,
+        "accuracy": 0.36051591011736395,
+        "avgReactionTime": 874.0425301175695,
+        "errorRate": 3.3294111662150967,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.33,
+          "motorErrors": 1
+        },
+        "timeSinceLastSession": 98841,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_5f68a2f4",
+    "archetype": "Cognitive Decline",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 61,
+        "moves": 13,
+        "accuracy": 0.5221129424064533,
+        "avgReactionTime": 738.6502936836384,
+        "errorRate": 3.105511924028013,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.17,
+          "motorErrors": 0.93
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 292,
+        "moves": 12,
+        "accuracy": 0.37382773324252855,
+        "avgReactionTime": 1205.581374168434,
+        "errorRate": 6.703648470316482,
+        "errorTypeBreakdown": {
+          "memoryErrors": 4.69,
+          "motorErrors": 2.01
+        },
+        "timeSinceLastSession": 79390,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 100,
+        "moves": 28,
+        "accuracy": 0.41142370680393936,
+        "avgReactionTime": 637.0776084169568,
+        "errorRate": 3.1212491371289706,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.18,
+          "motorErrors": 0.94
+        },
+        "timeSinceLastSession": 94608,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 336,
+        "moves": 17,
+        "accuracy": 0.3561425963271827,
+        "avgReactionTime": 886.7677016852656,
+        "errorRate": 3.761367777133764,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.63,
+          "motorErrors": 1.13
+        },
+        "timeSinceLastSession": 30116,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 215,
+        "moves": 24,
+        "accuracy": 0.33618710099961746,
+        "avgReactionTime": 876.9177809389623,
+        "errorRate": 3.348379320091254,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.34,
+          "motorErrors": 1
+        },
+        "timeSinceLastSession": 108760,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 128,
+        "moves": 27,
+        "accuracy": 0.3365840929639914,
+        "avgReactionTime": 792.1976988955132,
+        "errorRate": 3.4069523524587115,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.38,
+          "motorErrors": 1.02
+        },
+        "timeSinceLastSession": 27669,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_5a38d52b",
+    "archetype": "Cognitive Decline",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 159,
+        "moves": 15,
+        "accuracy": 0.4508552227843874,
+        "avgReactionTime": 741.5823578867388,
+        "errorRate": 3.3450883475462163,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.34,
+          "motorErrors": 1
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 221,
+        "moves": 29,
+        "accuracy": 0.5635672907001134,
+        "avgReactionTime": 685.1126454679808,
+        "errorRate": 2.4824896455417838,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.74,
+          "motorErrors": 0.74
+        },
+        "timeSinceLastSession": 123684,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 351,
+        "moves": 28,
+        "accuracy": 0.39096599716805686,
+        "avgReactionTime": 613.0794340616873,
+        "errorRate": 2.574237727970713,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.8,
+          "motorErrors": 0.77
+        },
+        "timeSinceLastSession": 98285,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 267,
+        "moves": 21,
+        "accuracy": 0.476982775543762,
+        "avgReactionTime": 745.3287583164272,
+        "errorRate": 2.4823692838087306,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.74,
+          "motorErrors": 0.74
+        },
+        "timeSinceLastSession": 151369,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 264,
+        "moves": 25,
+        "accuracy": 0.3492492893101642,
+        "avgReactionTime": 858.1436969749803,
+        "errorRate": 1.8686488136206867,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.31,
+          "motorErrors": 0.56
+        },
+        "timeSinceLastSession": 159811,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 316,
+        "moves": 24,
+        "accuracy": 0.3796291756742905,
+        "avgReactionTime": 711.7171188938759,
+        "errorRate": 4.513556125737354,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.16,
+          "motorErrors": 1.35
+        },
+        "timeSinceLastSession": 67373,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 92,
+        "moves": 16,
+        "accuracy": 0.43353287586753164,
+        "avgReactionTime": 892.2588017408582,
+        "errorRate": 4.716295770422587,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.3,
+          "motorErrors": 1.41
+        },
+        "timeSinceLastSession": 29995,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 228,
+        "moves": 20,
+        "accuracy": 0.4393033409081206,
+        "avgReactionTime": 906.6008536630792,
+        "errorRate": 4.933416228953993,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.45,
+          "motorErrors": 1.48
+        },
+        "timeSinceLastSession": 163135,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 354,
+        "moves": 13,
+        "accuracy": 0.37948730488243654,
+        "avgReactionTime": 949.1199051618305,
+        "errorRate": 3.832647205698785,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.68,
+          "motorErrors": 1.15
+        },
+        "timeSinceLastSession": 51626,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 10,
+        "sessionDuration": 337,
+        "moves": 12,
+        "accuracy": 0.3772951804872866,
+        "avgReactionTime": 845.5478178700678,
+        "errorRate": 4.060658092190704,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.84,
+          "motorErrors": 1.22
+        },
+        "timeSinceLastSession": 123114,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_a0cea08d",
+    "archetype": "Cognitive Decline",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 105,
+        "moves": 19,
+        "accuracy": 0.43097587140527494,
+        "avgReactionTime": 795.3990413612064,
+        "errorRate": 3.9855111886626973,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.79,
+          "motorErrors": 1.2
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 153,
+        "moves": 29,
+        "accuracy": 0.3668202997891441,
+        "avgReactionTime": 765.689188296166,
+        "errorRate": 3.9318793269009586,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.75,
+          "motorErrors": 1.18
+        },
+        "timeSinceLastSession": 82011,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 125,
+        "moves": 15,
+        "accuracy": 0.48290497880899047,
+        "avgReactionTime": 699.4555954293012,
+        "errorRate": 1.9555866865400766,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.37,
+          "motorErrors": 0.59
+        },
+        "timeSinceLastSession": 146667,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 320,
+        "moves": 23,
+        "accuracy": 0.4018475379142036,
+        "avgReactionTime": 743.7935993320422,
+        "errorRate": 5.497217243993029,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.85,
+          "motorErrors": 1.65
+        },
+        "timeSinceLastSession": 144978,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 327,
+        "moves": 27,
+        "accuracy": 0.31027125969397373,
+        "avgReactionTime": 941.879284478566,
+        "errorRate": 4.26317203516372,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.98,
+          "motorErrors": 1.28
+        },
+        "timeSinceLastSession": 170750,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 149,
+        "moves": 24,
+        "accuracy": 0.37970212157504385,
+        "avgReactionTime": 860.4953292881945,
+        "errorRate": 3.775724693751261,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.64,
+          "motorErrors": 1.13
+        },
+        "timeSinceLastSession": 66593,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 254,
+        "moves": 25,
+        "accuracy": 0.37126865012475696,
+        "avgReactionTime": 829.7655058474805,
+        "errorRate": 3.404959385363542,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.38,
+          "motorErrors": 1.02
+        },
+        "timeSinceLastSession": 161277,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 79,
+        "moves": 19,
+        "accuracy": 0.33429026206423873,
+        "avgReactionTime": 807.4651518343913,
+        "errorRate": 3.3239399442547,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.33,
+          "motorErrors": 1
+        },
+        "timeSinceLastSession": 174562,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 232,
+        "moves": 12,
+        "accuracy": 0.44061221792160543,
+        "avgReactionTime": 893.5386743404069,
+        "errorRate": 2.669234002425859,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.87,
+          "motorErrors": 0.8
+        },
+        "timeSinceLastSession": 120308,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_9877891d",
+    "archetype": "Cognitive Decline",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 184,
+        "moves": 14,
+        "accuracy": 0.4614514080793803,
+        "avgReactionTime": 787.0523579192708,
+        "errorRate": 3.502055973496924,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.45,
+          "motorErrors": 1.05
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 267,
+        "moves": 23,
+        "accuracy": 0.36576585725940436,
+        "avgReactionTime": 719.8326674198954,
+        "errorRate": 4.7794283203641275,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.35,
+          "motorErrors": 1.43
+        },
+        "timeSinceLastSession": 72210,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 158,
+        "moves": 15,
+        "accuracy": 0.31163363471987177,
+        "avgReactionTime": 1097.7794257605792,
+        "errorRate": 6.350254712163396,
+        "errorTypeBreakdown": {
+          "memoryErrors": 4.45,
+          "motorErrors": 1.91
+        },
+        "timeSinceLastSession": 148029,
+        "isOutlier": true,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 180,
+        "moves": 15,
+        "accuracy": 0.5708795727546311,
+        "avgReactionTime": 826.9411609634133,
+        "errorRate": 4.1975927211274255,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.94,
+          "motorErrors": 1.26
+        },
+        "timeSinceLastSession": 14430,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 69,
+        "moves": 17,
+        "accuracy": 0.3883054066117954,
+        "avgReactionTime": 865.2375109591247,
+        "errorRate": 3.93483213537938,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.75,
+          "motorErrors": 1.18
+        },
+        "timeSinceLastSession": 150408,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 171,
+        "moves": 25,
+        "accuracy": 0.3385666006157018,
+        "avgReactionTime": 836.9724223826346,
+        "errorRate": 3.641355596903912,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.55,
+          "motorErrors": 1.09
+        },
+        "timeSinceLastSession": 57679,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 243,
+        "moves": 31,
+        "accuracy": 0.3950810998047003,
+        "avgReactionTime": 908.6969150112684,
+        "errorRate": 4.914251989422251,
+        "errorTypeBreakdown": {
+          "memoryErrors": 3.44,
+          "motorErrors": 1.47
+        },
+        "timeSinceLastSession": 13060,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 319,
+        "moves": 21,
+        "accuracy": 0.4511341504269737,
+        "avgReactionTime": 804.6295810749958,
+        "errorRate": 2.610111102200036,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.83,
+          "motorErrors": 0.78
+        },
+        "timeSinceLastSession": 166868,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 9,
+        "sessionDuration": 90,
+        "moves": 27,
+        "accuracy": 0.35483680206050744,
+        "avgReactionTime": 809.2623281392488,
+        "errorRate": 2.918987328443125,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.04,
+          "motorErrors": 0.88
+        },
+        "timeSinceLastSession": 150202,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  },
+  {
+    "userId": "user_823d556a",
+    "archetype": "Cognitive Decline",
+    "sessions": [
+      {
+        "sessionId": 1,
+        "sessionDuration": 83,
+        "moves": 31,
+        "accuracy": 0.526228763119113,
+        "avgReactionTime": 695.9555419485782,
+        "errorRate": 1.7107245680190657,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.2,
+          "motorErrors": 0.51
+        },
+        "timeSinceLastSession": 0,
+        "isOutlier": false,
+        "predictedGroup": "somewhat_rested"
+      },
+      {
+        "sessionId": 2,
+        "sessionDuration": 70,
+        "moves": 13,
+        "accuracy": 0.4400600848699958,
+        "avgReactionTime": 874.9560651047482,
+        "errorRate": 3.400769684888446,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.38,
+          "motorErrors": 1.02
+        },
+        "timeSinceLastSession": 152146,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 3,
+        "sessionDuration": 219,
+        "moves": 14,
+        "accuracy": 0.37952550027049203,
+        "avgReactionTime": 669.5339837854921,
+        "errorRate": 3.5583928582512243,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.49,
+          "motorErrors": 1.07
+        },
+        "timeSinceLastSession": 25477,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 4,
+        "sessionDuration": 145,
+        "moves": 18,
+        "accuracy": 0.48714342878197336,
+        "avgReactionTime": 757.9621189712436,
+        "errorRate": 2.1229759551314595,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.49,
+          "motorErrors": 0.64
+        },
+        "timeSinceLastSession": 173812,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 5,
+        "sessionDuration": 186,
+        "moves": 28,
+        "accuracy": 0.37099271916912313,
+        "avgReactionTime": 848.9310923508231,
+        "errorRate": 2.091671354217237,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.46,
+          "motorErrors": 0.63
+        },
+        "timeSinceLastSession": 105387,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 6,
+        "sessionDuration": 268,
+        "moves": 29,
+        "accuracy": 0.3683916533057914,
+        "avgReactionTime": 840.3133373059006,
+        "errorRate": 3.360229902164926,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.35,
+          "motorErrors": 1.01
+        },
+        "timeSinceLastSession": 73589,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 7,
+        "sessionDuration": 318,
+        "moves": 28,
+        "accuracy": 0.3910337225508597,
+        "avgReactionTime": 800.6935908446195,
+        "errorRate": 2.5064588470903284,
+        "errorTypeBreakdown": {
+          "memoryErrors": 1.75,
+          "motorErrors": 0.75
+        },
+        "timeSinceLastSession": 41162,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      },
+      {
+        "sessionId": 8,
+        "sessionDuration": 299,
+        "moves": 28,
+        "accuracy": 0.34977076787612665,
+        "avgReactionTime": 775.8010443571195,
+        "errorRate": 3.6540470953908732,
+        "errorTypeBreakdown": {
+          "memoryErrors": 2.56,
+          "motorErrors": 1.1
+        },
+        "timeSinceLastSession": 18296,
+        "isOutlier": false,
+        "predictedGroup": "severely_tired"
+      }
+    ]
+  }
+]

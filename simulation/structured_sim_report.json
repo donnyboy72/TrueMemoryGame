@@ -1,0 +1,204 @@
+{
+  "overallMetrics": {
+    "totalUsers": 30,
+    "totalSessions": 232,
+    "accuracy": 0.9439655172413793,
+    "falsePositiveRate": 0.01293103448275862,
+    "falseNegativeRate": 0
+  },
+  "perArchetype": [
+    {
+      "archetype": "Normal",
+      "accuracy": 0.9375,
+      "avgConsistency": 0.9243386243386243,
+      "fpCount": 3,
+      "fnCount": 0
+    },
+    {
+      "archetype": "Mild Fatigue",
+      "accuracy": 0.9285714285714286,
+      "avgConsistency": 0.9275793650793651,
+      "fpCount": 0,
+      "fnCount": 0
+    },
+    {
+      "archetype": "Severe Fatigue",
+      "accuracy": 1,
+      "avgConsistency": 1,
+      "fpCount": 0,
+      "fnCount": 0
+    },
+    {
+      "archetype": "Motor Impairment",
+      "accuracy": 0.9555555555555556,
+      "avgConsistency": 0.951388888888889,
+      "fpCount": 0,
+      "fnCount": 0
+    },
+    {
+      "archetype": "Cognitive Decline",
+      "accuracy": 0.8958333333333334,
+      "avgConsistency": 0.888425925925926,
+      "fpCount": 0,
+      "fnCount": 0
+    }
+  ],
+  "edgeCases": [
+    {
+      "userId": "user_5e2983dc",
+      "archetype": "Normal",
+      "sessionId": 5,
+      "expected": "well_rested",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.658",
+        "rt": "425.4",
+        "err": "0.26"
+      }
+    },
+    {
+      "userId": "user_e5724cb9",
+      "archetype": "Normal",
+      "sessionId": 1,
+      "expected": "well_rested",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.660",
+        "rt": "490.2",
+        "err": "0.27"
+      }
+    },
+    {
+      "userId": "user_e60a7102",
+      "archetype": "Normal",
+      "sessionId": 9,
+      "expected": "well_rested",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.676",
+        "rt": "433.8",
+        "err": "0.46"
+      }
+    },
+    {
+      "userId": "user_d2d865fc",
+      "archetype": "Mild Fatigue",
+      "sessionId": 3,
+      "expected": "somewhat_rested",
+      "predicted": "severely_tired",
+      "metrics": {
+        "acc": "0.495",
+        "rt": "771.2",
+        "err": "2.47"
+      }
+    },
+    {
+      "userId": "user_351b8f03",
+      "archetype": "Mild Fatigue",
+      "sessionId": 7,
+      "expected": "somewhat_rested",
+      "predicted": "severely_tired",
+      "metrics": {
+        "acc": "0.520",
+        "rt": "929.0",
+        "err": "2.67"
+      }
+    },
+    {
+      "userId": "user_cec644c0",
+      "archetype": "Mild Fatigue",
+      "sessionId": 2,
+      "expected": "somewhat_rested",
+      "predicted": "severely_tired",
+      "metrics": {
+        "acc": "0.503",
+        "rt": "727.4",
+        "err": "3.34"
+      }
+    },
+    {
+      "userId": "user_768c3d76",
+      "archetype": "Motor Impairment",
+      "sessionId": 4,
+      "expected": "somewhat_rested",
+      "predicted": "severely_tired",
+      "metrics": {
+        "acc": "0.588",
+        "rt": "682.1",
+        "err": "4.99"
+      }
+    },
+    {
+      "userId": "user_56c4c0e2",
+      "archetype": "Motor Impairment",
+      "sessionId": 1,
+      "expected": "somewhat_rested",
+      "predicted": "severely_tired",
+      "metrics": {
+        "acc": "0.558",
+        "rt": "672.5",
+        "err": "4.12"
+      }
+    },
+    {
+      "userId": "user_8478c2f7",
+      "archetype": "Cognitive Decline",
+      "sessionId": 2,
+      "expected": "severely_tired",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.515",
+        "rt": "693.6",
+        "err": "2.30"
+      }
+    },
+    {
+      "userId": "user_8478c2f7",
+      "archetype": "Cognitive Decline",
+      "sessionId": 3,
+      "expected": "severely_tired",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.520",
+        "rt": "764.6",
+        "err": "1.92"
+      }
+    },
+    {
+      "userId": "user_5a38d52b",
+      "archetype": "Cognitive Decline",
+      "sessionId": 2,
+      "expected": "severely_tired",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.564",
+        "rt": "685.1",
+        "err": "2.48"
+      }
+    },
+    {
+      "userId": "user_a0cea08d",
+      "archetype": "Cognitive Decline",
+      "sessionId": 3,
+      "expected": "severely_tired",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.483",
+        "rt": "699.5",
+        "err": "1.96"
+      }
+    },
+    {
+      "userId": "user_823d556a",
+      "archetype": "Cognitive Decline",
+      "sessionId": 1,
+      "expected": "severely_tired",
+      "predicted": "somewhat_rested",
+      "metrics": {
+        "acc": "0.526",
+        "rt": "696.0",
+        "err": "1.71"
+      }
+    }
+  ]
+}

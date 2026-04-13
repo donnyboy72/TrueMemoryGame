@@ -16,7 +16,6 @@ export async function generateUserID(username: string): Promise<string> {
 
 export interface UserProfile {
   user_id: string;
-  created_at: string;
   total_sessions: number;
   game_version: string;
 }

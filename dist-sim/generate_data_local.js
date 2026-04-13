@@ -21,6 +21,16 @@ function gaussianRandom(mean, stdDev) {
     const num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
     return num * stdDev + mean;
 }
+function getTimeOfDayBucket(timestamp) {
+    const hour = new Date(timestamp).getHours();
+    if (hour >= 6 && hour < 12)
+        return "morning";
+    if (hour >= 12 && hour < 18)
+        return "afternoon";
+    if (hour >= 18 && hour < 22)
+        return "evening";
+    return "night";
+}
 const cognitiveStates = [
     {
         name: 'well_rested',
@@ -56,26 +66,32 @@ const cognitiveStates = [
     },
 ];
 // --- Data Transformation (copied from src/lib/DataLogger.ts) ---
-function transformSession(session) {
+function transformSession(session, timeSinceLastMs) {
     const totalTrials = session.trials.length;
     const totalAccuracy = session.trials.reduce((sum, trial) => sum + trial.accuracy, 0);
     const allReactionTimes = session.trials.flatMap(t => t.reaction_times);
     const totalReactionTime = allReactionTimes.reduce((sum, rt) => sum + rt, 0);
     const allSpatialDistances = session.trials.flatMap(t => t.spatial_distance_error);
     const totalSpatialDistance = allSpatialDistances.reduce((sum, err) => sum + err, 0);
+    const durationMs = session.session_length || 0;
     return {
-        session_id: session.session_id,
+        sessionId: session.session_id,
         task_type: session.task_type,
         number_of_trials: totalTrials,
         max_sequence_length: Math.max(...session.trials.map(t => t.sequence_length)),
         average_accuracy: totalTrials > 0 ? totalAccuracy / totalTrials : 0,
         average_reaction_time_ms: allReactionTimes.length > 0 ? totalReactionTime / allReactionTimes.length : 0,
         average_spatial_distance_error: allSpatialDistances.length > 0 ? totalSpatialDistance / allSpatialDistances.length : 0,
+        average_pixel_distance_error: allSpatialDistances.length > 0 ? (totalSpatialDistance / allSpatialDistances.length) * 5 : 0, // Placeholder mapping
         all_reaction_times_ms: session.trials.map(t => t.reaction_times),
         all_spatial_distance_errors: session.trials.map(t => t.spatial_distance_error),
-        total_task_completion_time_ms: session.session_length || 0,
-        session_length_ms: session.session_length || 0,
-        timestamp_relative_ms: session.end_time || Date.now(),
+        all_pixel_distance_errors: session.trials.map(t => t.spatial_distance_error.map(e => e * 5)), // Placeholder mapping
+        // Privacy-Safe replacements
+        sessionDuration: Math.round(durationMs / 1000),
+        timeSinceLastSession: Math.round(timeSinceLastMs / 1000),
+        timeOfDay: getTimeOfDayBucket(session.start_time),
+        total_task_completion_time_ms: durationMs,
+        session_length_ms: durationMs,
     };
 }
 // --- Main Simulation Function ---
@@ -86,17 +102,21 @@ async function generateSimulationData() {
     for (const state of cognitiveStates) {
         console.log(`\n--- Starting data generation for: ${state.name} ---`);
         const allSessions = [];
+        let lastSessionEndTime = 0;
         // Clear existing data file for this state
         const filePath = path.join(OUTPUT_DIR, state.fileName);
         if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
             console.log(`Cleared existing data file: ${state.fileName}`);
         }
+        let simulatedCurrentTime = Date.now() - (NUM_SESSIONS_PER_CATEGORY * 3600 * 1000); // Start some time ago
         for (let i = 0; i < NUM_SESSIONS_PER_CATEGORY; i++) {
+            const sessionGap = getRandomInt(1800, 7200) * 1000; // 30 mins to 2 hours
+            simulatedCurrentTime += sessionGap;
             const sessionLog = {
                 session_id: uuidv4(),
                 task_type: "memory_sequence",
-                start_time: Date.now(),
+                start_time: simulatedCurrentTime,
                 trials: [],
             };
             let currentSequenceLength = state.initialSequenceLength;
@@ -180,10 +200,12 @@ async function generateSimulationData() {
                     ));
                 }
             }
-            sessionLog.end_time = Date.now();
+            sessionLog.end_time = sessionLog.start_time + sessionLog.trials.reduce((sum, t) => sum + t.total_trial_time, 0);
             sessionLog.session_length = sessionLog.end_time - sessionLog.start_time;
-            const storedSession = transformSession(sessionLog);
+            const timeSinceLastMs = lastSessionEndTime === 0 ? 0 : (sessionLog.start_time - lastSessionEndTime);
+            const storedSession = transformSession(sessionLog, timeSinceLastMs);
             allSessions.push(storedSession);
+            lastSessionEndTime = sessionLog.end_time;
             if ((i + 1) % 100 === 0) {
                 console.log(`  ${state.name}: Generated ${i + 1}/${NUM_SESSIONS_PER_CATEGORY} sessions.`);
             }

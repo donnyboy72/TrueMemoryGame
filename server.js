@@ -48,8 +48,8 @@ app.post('/api/therapist/register', (req, res) => {
 
     const newTherapist = {
         username,
-        password: hashPassword(password),
-        created_at: new Date().toISOString()
+        password: hashPassword(password)
+        // removed created_at for HIPAA
     };
     therapists.push(newTherapist);
     fs.writeFileSync(THERAPISTS_FILE, JSON.stringify(therapists, null, 2));
@@ -69,9 +69,8 @@ app.post('/api/therapist/login', (req, res) => {
         return res.status(401).json({ error: 'Invalid username or password' });
     }
 
-    // In a real app, we would issue a JWT here. 
-    // For this prototype, we'll return a simple "token" that the client can store.
-    const token = Buffer.from(`${username}:${Date.now()}`).toString('base64');
+    // Return a random token (no timestamps)
+    const token = crypto.randomBytes(16).toString('hex');
     res.json({ success: true, token, username });
 });
 
@@ -97,7 +96,7 @@ app.post('/api/login', (req, res) => {
     } else {
         profile = {
             user_id: userID,
-            created_at: new Date().toISOString(),
+            // removed created_at for HIPAA
             total_sessions: 0,
             game_version: "0.2"
         };
@@ -120,18 +119,22 @@ app.post('/api/session', (req, res) => {
         fs.mkdirSync(sessionsDir, { recursive: true });
     }
 
-    // Generate unique session filename
-    const now = new Date();
-    const timestampStr = now.toISOString().replace(/[:T]/g, '_').split('.')[0];
-    const sessionFilename = `session_${timestampStr}.json`;
+    // Generate unique session filename using sessionId (UUID)
+    const sessionId = sessionData.sessionId || crypto.randomUUID();
+    const sessionFilename = `session_${sessionId}.json`;
     const sessionPath = path.join(sessionsDir, sessionFilename);
 
-    // Add metadata to session
+    // Ensure session data is HIPAA safe
     const finalSession = {
         ...sessionData,
-        user_id: userID,
-        session_timestamp: now.toISOString()
+        user_id: userID
+        // removed session_timestamp
     };
+    
+    // Explicitly remove any remaining timestamps if they leaked in
+    delete finalSession.session_timestamp;
+    delete finalSession.timestamp_relative_ms;
+    delete finalSession.created_at;
 
     // Save session file
     fs.writeFileSync(sessionPath, JSON.stringify(finalSession, null, 2));
@@ -167,24 +170,28 @@ app.post('/api/sync', (req, res) => {
     existingFiles.forEach(f => {
         try {
             const data = JSON.parse(fs.readFileSync(path.join(sessionsDir, f), 'utf-8'));
-            if (data.session_id) existingIDs.add(data.session_id);
+            const sid = data.sessionId || data.session_id;
+            if (sid) existingIDs.add(sid);
         } catch (e) { /* ignore corrupt files */ }
     });
 
     sessions.forEach(session => {
-        if (!session.session_id || existingIDs.has(session.session_id)) return;
+        const sid = session.sessionId || session.session_id;
+        if (!sid || existingIDs.has(sid)) return;
 
-        const timestampStr = new Date(session.timestamp_relative_ms || Date.now())
-            .toISOString().replace(/[:T]/g, '_').split('.')[0];
-        const sessionFilename = `sync_session_${session.session_id.substring(0, 8)}_${timestampStr}.json`;
+        const sessionFilename = `sync_session_${sid}.json`;
         const sessionPath = path.join(sessionsDir, sessionFilename);
 
         const finalSession = {
             ...session,
             user_id: userID,
-            session_timestamp: new Date(session.timestamp_relative_ms || Date.now()).toISOString(),
             is_synced: true
         };
+        
+        // Remove timestamps
+        delete finalSession.session_timestamp;
+        delete finalSession.timestamp_relative_ms;
+        delete finalSession.created_at;
 
         fs.writeFileSync(sessionPath, JSON.stringify(finalSession, null, 2));
         savedCount++;
@@ -208,47 +215,17 @@ app.get('/api/users', (req, res) => {
     const userIDs = fs.readdirSync(USERS_ROOT).filter(f => fs.statSync(path.join(USERS_ROOT, f)).isDirectory());
     const users = userIDs.map(userID => {
         const userDir = path.join(USERS_ROOT, userID);
-        const profilePath = path.join(userDir, 'profile.json');
         const sessionsDir = path.join(userDir, 'sessions');
         
-        let profile = {};
-        if (fs.existsSync(profilePath)) {
-            profile = JSON.parse(fs.readFileSync(profilePath, 'utf-8'));
-        }
-
-        let firstSession = null;
-        let lastSession = null;
         let sessionCount = 0;
-
         if (fs.existsSync(sessionsDir)) {
-            // ONLY include files that match our session naming pattern
-            const sessionFiles = fs.readdirSync(sessionsDir).filter(f => 
-                f.startsWith('session_') || f.startsWith('sync_session_')
-            );
-            
-            sessionCount = sessionFiles.length;
-
-            if (sessionCount > 0) {
-                const timestamps = sessionFiles.map(f => {
-                    try {
-                        const data = JSON.parse(fs.readFileSync(path.join(sessionsDir, f), 'utf-8'));
-                        return data.session_timestamp || data.timestamp_relative_ms || null;
-                    } catch (e) { return null; }
-                }).filter(t => t !== null).sort();
-
-                if (timestamps.length > 0) {
-                    firstSession = timestamps[0];
-                    lastSession = timestamps[timestamps.length - 1];
-                }
-            }
+            sessionCount = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json')).length;
         }
 
         return {
             userID,
-            totalSessions: sessionCount, // Use dynamic count for accuracy
-            firstSession,
-            lastSession,
-            createdAt: profile.created_at
+            totalSessions: sessionCount
+            // removed firstSession, lastSession, createdAt
         };
     });
 
@@ -262,10 +239,7 @@ app.get('/api/users/:userID/sessions', (req, res) => {
 
     if (!fs.existsSync(sessionsDir)) return res.json([]);
 
-    // ONLY include files that match our session naming pattern
-    const sessionFiles = fs.readdirSync(sessionsDir).filter(f => 
-        f.startsWith('session_') || f.startsWith('sync_session_')
-    );
+    const sessionFiles = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json'));
 
     const sessions = sessionFiles.map(f => {
         try {
@@ -273,11 +247,18 @@ app.get('/api/users/:userID/sessions', (req, res) => {
         } catch (e) { return null; }
     }).filter(s => s !== null && typeof s === 'object' && !Array.isArray(s));
 
-    // Sort by timestamp before sending to client
+    // Sorting by sessionId if no timestamps are available
     sessions.sort((a, b) => {
-        const timeA = new Date(a.session_timestamp || a.timestamp_relative_ms || 0).getTime();
-        const timeB = new Date(b.session_timestamp || b.timestamp_relative_ms || 0).getTime();
-        return timeA - timeB;
+        const sidA = a.sessionId || a.session_id || '';
+        const sidB = b.sessionId || b.session_id || '';
+        
+        // If both are numeric, sort numerically
+        if (!isNaN(sidA) && !isNaN(sidB)) {
+            return Number(sidA) - Number(sidB);
+        }
+        
+        // Fallback to string comparison (for UUIDs or mixed)
+        return String(sidA).localeCompare(String(sidB));
     });
 
     res.json(sessions);
@@ -289,7 +270,10 @@ app.get('/api/export', (req, res) => {
 
     const headers = [
         'user_id',
-        'session_timestamp',
+        'sessionId',
+        'sessionDuration',
+        'timeSinceLastSession',
+        'timeOfDay',
         'average_accuracy',
         'average_reaction_time_ms',
         'average_spatial_distance_error',
@@ -307,6 +291,9 @@ app.get('/api/export', (req, res) => {
             const sessionFiles = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json'));
             sessionFiles.forEach(f => {
                 const session = JSON.parse(fs.readFileSync(path.join(sessionsDir, f), 'utf-8'));
+                // Map old fields to new ones if necessary for export
+                session.sessionId = session.sessionId || session.session_id;
+                
                 const row = headers.map(h => session[h] ?? '').join(',');
                 csvContent += row + '\n';
             });
@@ -319,5 +306,5 @@ app.get('/api/export', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`HIPAA-safe backend listening at http://localhost:${PORT}`);
+    console.log(`HIPAA-compliant backend listening at http://localhost:${PORT}`);
 });

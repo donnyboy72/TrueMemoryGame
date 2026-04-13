@@ -1,0 +1,17 @@
+{
+    "well_rested": {
+        "mean_accuracy": 0.879,
+        "mean_reaction_time_ms": 325.73,
+        "mean_spatial_distance_error": 0.28
+    },
+    "somewhat_rested": {
+        "mean_accuracy": 0.642,
+        "mean_reaction_time_ms": 506.45,
+        "mean_spatial_distance_error": 1.38
+    },
+    "severely_tired": {
+        "mean_accuracy": 0.335,
+        "mean_reaction_time_ms": 818.21,
+        "mean_spatial_distance_error": 3.81
+    }
+}

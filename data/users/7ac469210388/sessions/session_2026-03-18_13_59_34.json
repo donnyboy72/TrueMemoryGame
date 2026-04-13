@@ -1,5 +1,4 @@
 {
-  "session_id": "153e5e39-ced6-4069-acc0-234f2cbae431",
   "task_type": "memory_sequence",
   "number_of_trials": 32,
   "max_sequence_length": 3,
@@ -703,7 +702,6 @@
   ],
   "total_task_completion_time_ms": 9733,
   "session_length_ms": 9733,
-  "timestamp_relative_ms": 1773842374277,
   "user_id": "7ac469210388",
-  "session_timestamp": "2026-03-18T13:59:34.280Z"
+  "sessionId": "153e5e39-ced6-4069-acc0-234f2cbae431"
 }

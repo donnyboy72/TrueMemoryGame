@@ -1,0 +1,37 @@
+{
+  "timestamp_relative": "Project Epoch Relative",
+  "mathSimulation": {
+    "label": "Math Simulation (Deterministic Baseline)",
+    "overallAccuracy": 0.9815668202764977,
+    "totalSessions": 217,
+    "perArchetype": [
+      {
+        "archetype": "Normal",
+        "accuracy": 1,
+        "rtStdDev": 26.526940749305652
+      },
+      {
+        "archetype": "Mild Fatigue",
+        "accuracy": 0.9782608695652174,
+        "rtStdDev": 93.0188402602919
+      },
+      {
+        "archetype": "Severe Fatigue",
+        "accuracy": 1,
+        "rtStdDev": 104.77555738017692
+      },
+      {
+        "archetype": "Motor Impairment",
+        "accuracy": 0.9347826086956522,
+        "rtStdDev": 56.461675605176836
+      },
+      {
+        "archetype": "Cognitive Decline",
+        "accuracy": 1,
+        "rtStdDev": 64.93478695415452
+      }
+    ]
+  },
+  "llmSimulation": null,
+  "comparison": "LLM simulation not run."
+}

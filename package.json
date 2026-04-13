@@ -9,7 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "build:sim": "tsc -p tsconfig.sim.json",
-    "simulate-data-local": "node dist-sim/generate_data_local.js"
+    "simulate": "node dist-sim/simulation/compare_simulations.js",
+    "simulate:math": "set SIM_MODE=math && node dist-sim/simulation/compare_simulations.js",
+    "simulate:llm": "set SIM_MODE=llm && node dist-sim/simulation/compare_simulations.js",
+    "simulate:both": "set SIM_MODE=both && node dist-sim/simulation/compare_simulations.js"
   },
   "dependencies": {
     "cors": "^2.8.6",

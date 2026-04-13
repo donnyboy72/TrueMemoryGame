@@ -4,62 +4,52 @@
     {
       "reactionTime": 288,
       "accuracy": 0.9,
-      "confidence": 0.97,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.97
     },
     {
       "reactionTime": 373,
       "accuracy": 0.9,
-      "confidence": 0.9,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.9
     },
     {
       "reactionTime": 337,
       "accuracy": 0.99,
-      "confidence": 0.93,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.93
     },
     {
       "reactionTime": 305,
       "accuracy": 0.91,
-      "confidence": 0.87,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.87
     },
     {
       "reactionTime": 255,
       "accuracy": 1,
-      "confidence": 0.91,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.91
     },
     {
       "reactionTime": 227,
       "accuracy": 0.97,
-      "confidence": 0.93,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.93
     },
     {
       "reactionTime": 239,
       "accuracy": 0.88,
-      "confidence": 0.86,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.86
     },
     {
       "reactionTime": 223,
       "accuracy": 0.93,
-      "confidence": 1,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 1
     },
     {
       "reactionTime": 264,
       "accuracy": 1,
-      "confidence": 0.91,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.91
     },
     {
       "reactionTime": 336,
       "accuracy": 1,
-      "confidence": 0.86,
-      "timestamp": "2026-03-10T00:49:26.687Z"
+      "confidence": 0.86
     }
   ],
   "statistics": {

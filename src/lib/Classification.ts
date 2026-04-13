@@ -1,6 +1,6 @@
 // src/lib/Classification.ts
 
-import summary from '../../summary.json';
+import summary from '../../summary.json' with { type: 'json' };
 
 // Define types for clarity
 type FatigueGroup = 'well_rested' | 'somewhat_rested' | 'severely_tired';
@@ -51,8 +51,71 @@ const normalize = (value: number, min: number, max: number): number => {
   return (value - min) / (max - min);
 };
 
+// ... (existing code)
+
+/**
+ * PART 4: TREND ANALYSIS (WITHIN SESSION)
+ * Analyzes the last 3-5 checkpoints to detect fatigue or decline.
+ */
+export const analyzeCheckpoints = (checkpoints: { 
+  avgReactionTime: number; 
+  accuracy: number; 
+  errorTypeBreakdown: { motorErrors: number } 
+}[]) => {
+  if (checkpoints.length < 2) return { currentState: "Stable", confidence: 1.0 };
+
+  const recent = checkpoints.slice(-5);
+  const n = recent.length;
+
+  // Calculate trends (simple linear slope approximation)
+  const rtTrend = (recent[n-1].avgReactionTime - recent[0].avgReactionTime) / n;
+  const accTrend = (recent[n-1].accuracy - recent[0].accuracy) / n;
+  const motorTrend = (recent[n-1].errorTypeBreakdown.motorErrors - recent[0].errorTypeBreakdown.motorErrors) / n;
+// ... (rest of function)
+
+  let currentState = "Stable";
+  let confidence = 0.7;
+
+  if (rtTrend > 50 && accTrend < -0.05) {
+    currentState = "Severe Fatigue";
+    confidence = 0.9;
+  } else if (rtTrend > 20 || accTrend < -0.02) {
+    currentState = "Early Fatigue";
+    confidence = 0.8;
+  } else if (motorTrend > 0.5) {
+    currentState = "Motor Degradation";
+    confidence = 0.75;
+  } else if (Math.abs(rtTrend) > 100) {
+     currentState = "Attention Drift";
+     confidence = 0.6;
+  }
+
+  return { currentState, confidence };
+};
+
+/**
+ * PART 5: LONG-TERM ANALYSIS (ACROSS SESSIONS)
+ */
+export const analyzeLongTermTrend = (sessions: any[]) => {
+  if (sessions.length < 3) return "Stable";
+
+  const recent = sessions.slice(-5);
+  const accuracies = recent.map(s => s.avgAccuracy || s.average_accuracy);
+  
+  const firstHalf = accuracies.slice(0, Math.floor(accuracies.length / 2));
+  const secondHalf = accuracies.slice(Math.floor(accuracies.length / 2));
+
+  const avgFirst = firstHalf.reduce((a, b) => a + b, 0) / firstHalf.length;
+  const avgSecond = secondHalf.reduce((a, b) => a + b, 0) / secondHalf.length;
+
+  if (avgSecond > avgFirst + 0.05) return "Improving";
+  if (avgSecond < avgFirst - 0.05) return "Declining";
+  return "Stable";
+};
+
 /**
  * Classifies a player's session performance by comparing it to reference group means.
+
  * @param playerMetrics The aggregated metrics from the player's session.
  * @returns A classification result with the group, an explanation, and a suggestion.
  */

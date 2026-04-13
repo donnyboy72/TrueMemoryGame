@@ -54,6 +54,10 @@ export const useGameLogic = (gridSize: number) => {
 
   const startNewSession = useCallback(() => {
     logger.startSession();
+    startNewGame();
+  }, [gridSize]);
+
+  const startNewGame = useCallback(() => {
     setTrialNumber(1);
     setLevel(1);
     generateSequence(BASE_SEQUENCE_LENGTH);
@@ -214,7 +218,11 @@ export const useGameLogic = (gridSize: number) => {
     setStatus('sequence');
   };
 
-  const finishGame = (): StoredSession | null => {
+  const addCheckpoint = () => {
+    return logger.addCheckpoint();
+  }
+
+  const finishSession = (): StoredSession | null => {
     const session = logger.endSession();
     setStatus('finished');
     return session;
@@ -226,11 +234,14 @@ export const useGameLogic = (gridSize: number) => {
     sequence,
     isUserTurn,
     startNewSession,
+    startNewGame,
     handleTileClick,
     advanceToNextTrial,
-    finishGame,
+    addCheckpoint,
+    finishSession,
     startInputPhase,
     SEQUENCE_DELAY,
     STIMULUS_DURATION
   };
+
 };

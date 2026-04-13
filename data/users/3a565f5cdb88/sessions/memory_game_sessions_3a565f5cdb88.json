@@ -1,6 +1,5 @@
 [
   {
-    "session_id": "6294eb55-f4fb-432d-a074-9127116ff9a0",
     "task_type": "memory_sequence",
     "number_of_trials": 24,
     "max_sequence_length": 5,
@@ -445,10 +444,9 @@
     ],
     "total_task_completion_time_ms": 21068,
     "session_length_ms": 21068,
-    "timestamp_relative_ms": 1773105257543
+    "sessionId": "6294eb55-f4fb-432d-a074-9127116ff9a0"
   },
   {
-    "session_id": "fac6dd0f-8b8e-4cd6-b8c7-c0e30d27cc70",
     "task_type": "memory_sequence",
     "number_of_trials": 24,
     "max_sequence_length": 5,
@@ -989,10 +987,9 @@
     ],
     "total_task_completion_time_ms": 26897,
     "session_length_ms": 26897,
-    "timestamp_relative_ms": 1773105285990
+    "sessionId": "fac6dd0f-8b8e-4cd6-b8c7-c0e30d27cc70"
   },
   {
-    "session_id": "1c259bb6-8cd3-43fb-80cf-84da95e1c060",
     "task_type": "memory_sequence",
     "number_of_trials": 1,
     "max_sequence_length": 3,
@@ -1007,10 +1004,9 @@
     ],
     "total_task_completion_time_ms": 16100,
     "session_length_ms": 16100,
-    "timestamp_relative_ms": 1773105305417
+    "sessionId": "1c259bb6-8cd3-43fb-80cf-84da95e1c060"
   },
   {
-    "session_id": "d1a57cc2-92e4-4942-8ad4-727597dfb528",
     "task_type": "memory_sequence",
     "number_of_trials": 1,
     "max_sequence_length": 3,
@@ -1025,6 +1021,6 @@
     ],
     "total_task_completion_time_ms": 29102,
     "session_length_ms": 29102,
-    "timestamp_relative_ms": 1773105336184
+    "sessionId": "d1a57cc2-92e4-4942-8ad4-727597dfb528"
   }
 ]

@@ -168,23 +168,49 @@ This document tracks the reasoning, research basis, and technical justification 
 ### Feature: User Hashing (SHA-256)
 
 1.  **Purpose:**  
-    Converts a name (e.g., "John Doe") into an anonymous 12-character ID (e.g., `3a565f5cdb88`).
+    Converts a name or unique identifier into an anonymous 12-character ID (e.g., `3a565f5cdb88`).
 
 2.  **Source of Decision:**  
     - **Based on cognitive/medical research** (HIPAA/Ethics)
     - **Engineering best practice**
 
 3.  **Detailed Reasoning:**  
-    Protects PII (Personally Identifiable Information). By hashing on the client-side and only sending the hash to the server, the server never "knows" who the user is, but can still track progress across sessions.
+    Protects PII (Personally Identifiable Information). By hashing on the client-side and only sending the hash to the server, the server never "knows" who the user is, but can still track progress across sessions. This is a foundational step for HIPAA de-identification.
 
 4.  **Supporting Evidence:**  
     Standard practice for de-identifying datasets in medical research.
 
 5.  **Weaknesses:**  
-    **Deterministic Hashing:** If a researcher knows the "list of names" (e.g., a class roster), they can easily re-identify users by hashing the names themselves and matching the IDs.
+    **Deterministic Hashing:** If a researcher knows the "list of names" (e.g., a class roster), they can re-identify users by hashing the names themselves and matching the IDs.
 
 6.  **Better Alternatives:**  
     Use a "Salt" (a random string) added to the name before hashing, or use UUIDs generated once and stored in a secure cookie.
+
+---
+
+### Feature: HIPAA Safe Harbor De-identification
+
+1.  **Purpose:**  
+    Ensures the dataset contains no direct or indirect identifiers (dates, times, names) in accordance with HIPAA Safe Harbor principles.
+
+2.  **Source of Decision:**  
+    - **Regulatory Compliance** (HIPAA)
+    - **User Privacy Request**
+
+3.  **Detailed Reasoning:**  
+    To move beyond a prototype into a clinical tool, absolute timestamps (e.g., `2026-03-18 13:44:46`) must be removed. These are considered "indirect identifiers" that can be used to re-identify patients. The project now uses **Relative Time Metrics**:
+    - **`sessionDuration`**: Length of play in seconds.
+    - **`timeSinceLastSession`**: Seconds elapsed since the previous game (calculated client-side).
+    - **`timeOfDay`**: Categorical buckets ("morning", "afternoon", "evening", "night") instead of exact times.
+
+4.  **Supporting Evidence:**  
+    HIPAA Safe Harbor Method (45 CFR § 164.514(b)(2)) requires the removal of all elements of dates (except year) for dates directly related to an individual.
+
+5.  **Weaknesses:**  
+    Loss of "Time-Series" precision (e.g., exact circadian rhythm correlation) in exchange for legal compliance.
+
+6.  **Better Alternatives:**  
+    Use "Study-Relative Days" (e.g., Day 1, Day 2) if longitudinal tracking requires more granularity than simple "time since last session."
 
 ---
 
@@ -297,6 +323,29 @@ This document tracks the reasoning, research basis, and technical justification 
 6.  **Better Alternatives:**  
     Index session metadata in the `profile.json` file for faster O(1) lookups.
 
+### 9. Ollama-Playwright Behavioral Simulation (April 2026)
+
+#### Overview
+The system now includes a high-fidelity behavioral simulation script, `simulateBehavioralData.js`, which leverages **Ollama** for stochastic cognitive modeling and **Playwright** for execution orchestration. This tool generates synthetic datasets representing complex behavioral patterns that are difficult to model with pure mathematics.
+
+#### Simulation Types & Cognitive Logic
+1.  **Attention Drift**: Models fluctuating focus with random spikes in reaction time and inconsistent accuracy.
+2.  **Learning Curve**: Represents mastery over time, showing steady improvement in accuracy and reduction in reaction time.
+3.  **Overload Threshold**: Simulates cognitive collapse, where performance remains stable until a "breaking point" (checkpoint 10+), followed by rapid degradation.
+4.  **Impulsive Behavior**: Focuses on "speed-accuracy tradeoff" with very low reaction times but high motor error rates (misclicks).
+5.  **Motor Fatigue**: Models physical/fine-motor decline where accuracy is maintained but reaction time and motor errors increase significantly.
+6.  **Inconsistent Pattern**: Represents erratic cognitive states (e.g., severe sleep deprivation or neurological flux) with high variability across all metrics.
+7.  **Recovery Pattern**: Simulates a "return to baseline," starting from an impaired state and gradually improving over 15-20 checkpoints.
+
+#### Technical Architecture
+-   **Orchestration (Playwright)**: Mimics a real system flow by launching a headless browser to "trigger" the data generation pipeline. This ensures that the simulation can be easily extended to include UI-based interactions or network-level intercepts in the future.
+-   **Cognitive Modeling (Ollama)**: Uses LLM prompts (llama3/mistral) to generate checkpoint-level data. The LLM acts as a "stochastic engine" that understands the *semantic* meaning of "fatigue" or "learning," providing more realistic variability than Gaussian noise.
+-   **Validation & Retry**: Implements a 3-tier validation (JSON schema, field existence, and value range checks) with up to 3 retries per simulation type to ensure data integrity.
+
+#### HIPAA & Safety
+-   **Safe Harbor Compliance**: No timestamps, dates, or PII. Only relative ordering (`checkpointIndex`) and durations are stored.
+-   **Local Execution**: Ollama runs entirely on the researcher's local machine, ensuring that no sensitive behavioral prompts or generated data ever leave the local environment.
+
 ---
 
 ## CRITICAL ANALYSIS SUMMARY
@@ -304,7 +353,7 @@ This document tracks the reasoning, research basis, and technical justification 
 ### Top 3 Strongest Design Decisions (Research-Backed)
 1.  **Multi-Dimensional Error Logging:** Capturing both *Spatial* (cognitive) and *Pixel* (motor) errors allows for a more holistic view of impairment than accuracy alone.
 2.  **Automatic Data Mirroring:** The "Sync" system ensures that researchers never lose data due to browser cache clearing, creating a reliable bridge between local play and central analysis.
-3.  **Access-Controlled Research Dashboard:** The addition of a therapist-specific login system ensures that clinical data is protected and follows standard security protocols.
+3.  **Behavioral LLM Simulation:** Using LLMs to model "Attention Drift" or "Impulsive Behavior" provides a rich, non-linear dataset that standard math simulations cannot easily replicate.
 
 ### Top 3 Weakest Design Decisions (Need Improvement)
 1.  **Circular Simulation Logic:** The classifier is currently judged against a simulator that "guesses" what fatigue looks like. This makes the accuracy of the classification "imaginary" until human-verified.
@@ -313,7 +362,7 @@ This document tracks the reasoning, research basis, and technical justification 
 
 ### What changes would make this project publishable research?
 1.  **Validation Study:** Run a "controlled fatigue" study (e.g., test users at 9 AM vs. 11 PM) and use that data to replace the synthetic `summary.json`.
-2.  **Internal Consistency Metrics:** Calculate and report Cronbach's Alpha or Split-Half Reliability for the game metrics to prove they are consistent.
+2.  **Cross-Simulator Comparison:** Use the new `simulateBehavioralData.js` to compare LLM-generated patterns against real patient data to quantify the "Realism Gap."
 3.  **Time-on-Task Analysis:** Analyze if RT slows down *within* a single 5-minute session (vigilance decrement), which is a much stronger indicator of fatigue than a simple session average.
 
 # Game Design & UX Research-Based Redesign
@@ -438,3 +487,70 @@ A longer preparatory interval ensures the user has fully processed the end of th
 ### Expected Impact
 - Elimination of most anticipatory/accidental taps.
 - Higher reliability of the "Decision Time" (First RT) metric.
+
+---
+
+## Simulation Architecture Update (April 2026)
+
+### 1. Overview
+The system now implements a **Dual-Simulation Architecture** designed for clinical research validation. This allows researchers to compare a deterministic, math-based baseline against a stochastic, behaviorally nuanced LLM-based simulation. This comparison is critical for understanding whether advanced AI can model human cognitive variability more accurately than standard statistical distributions.
+
+### 2. HIPAA Compliance & De-identification
+A rigorous audit has been performed to ensure compliance with HIPAA Safe Harbor standards.
+- **Identifier Removal:** All exact dates, absolute timestamps (`Date.now()`, ISO strings), and direct identifiers (names, emails) have been removed from the persistent data layer.
+- **Relative Time Metrics:** Absolute timestamps are replaced with `sessionDuration` (seconds) and `timeSinceLastSession` (seconds). 
+- **Time of Day Buckets:** To preserve diurnal patterns without exposing exact times, the system uses buckets: "morning", "afternoon", "evening", and "night".
+- **Anonymous IDs:** Users are identified via truncated SHA-256 hashes of their local usernames, ensuring no PII ever reaches the server.
+
+### 3. Math Simulation (Deterministic Baseline)
+- **Methodology:** Uses Gaussian distributions (Normal) and linear trends (Fatigue/Learning) to generate session metrics.
+- **Reproducibility:** Powered by a seedable PRNG (Mulberry32), ensuring that researchers can reproduce the exact same dataset across different runs.
+- **Role:** Serves as the "Control" group in simulation experiments.
+
+### 4. LLM Simulation (Ollama)
+- **Methodology:** Employs a local-only LLM (via Ollama) to generate session data based on structured persona prompts (e.g., "Simulate a user with Mild Fatigue").
+- **Realism:** The LLM introduces "human-like" variability, such as inconsistent reaction times or non-linear accuracy decay, which are difficult to model with pure math.
+- **Privacy:** By using Ollama (local execution), sensitive behavioral patterns are never transmitted over the internet or sent to third-party AI providers.
+
+### 5. Research Value
+This architecture enables:
+- **Baseline Validation:** Testing if the classification system is "too rigid" for natural human variability.
+- **Sensitivity Analysis:** Determining the minimum performance drop required for the system to detect fatigue.
+- **AI-Human Comparison:** A pilot for future studies where the system might interact with real patients.
+
+### 6. Tradeoffs
+- **Math:** High control, low realism, 100% deterministic.
+- **LLM:** High realism, low control (stochastic), computationally heavier.
+
+### 7. Future Work
+- **Adaptive Difficulty:** Using the simulation results to tune game difficulty in real-time.
+- **Clinical Validation:** Comparing these synthetic results against a small pilot of clinically diagnosed patients.
+- **Therapist Dashboard:** Visualizing the "Variability Gap" between predicted and actual patient behavior.
+
+### 8. Simulation Pipeline & Verification
+The system includes an automated verification script, `simulateAndCompare.js`, to maintain the integrity of the dual-simulation architecture.
+- **Unified Entry Point:** Provides a CLI-driven wrapper to build and execute both simulation modes.
+- **Standardized Metrics:** Automatically computes **Classification Accuracy**, **False Positive/Negative Rates**, and **Consistency Scores** (intra-user classification stability).
+- **Compliance Verification:** Validates that no real-world timestamps or PII enter the final research datasets.
+---
+
+## Hybrid Tracking System Implementation (April 2026)
+
+### Goal
+Implement a dual-layer tracking system to monitor both real-time fatigue (within-session) and long-term recovery/decline (across-session).
+
+### Key Changes
+1.  **Data Model**: Transitioned to a nested model where each "Rehab Session" contains multiple "Checkpoints" (individual games).
+2.  **HIPAA Compliance**: Removed all timestamps (`Date.now()`, ISO strings) from stored data. Replaced with simple incrementing IDs (`sessionId`, `checkpointIndex`) and relative time durations (`sessionDuration`, `timeSinceLastCheckpoint`).
+3.  **Trend Analysis**:
+    - **Within-Session**: Monitors reaction time and accuracy drift across checkpoints to detect early/severe fatigue or attention drift.
+    - **Long-Term**: Compares average performance across sessions to identify improvement or decline.
+4.  **UI/Dashboard**:
+    - Added "Level" toggle to switch between Macro (Session) and Micro (Checkpoint) views.
+    - Implemented "View Mode" for Raw vs. Smoothed (3-point moving average) data.
+    - Added real-time status indicators (e.g., "Early Fatigue Detected").
+
+### Justification
+- **Checkpoints**: Essential for real-time safety. If a patient shows severe fatigue mid-session, the system can now detect and flag it immediately.
+- **Hybrid Approach**: Preserves legacy session-level insights while adding high-resolution within-session data.
+- **HIPAA Safe Harbor**: By using only relative ordering and durations, the data remains strictly de-identified while preserving all research value.

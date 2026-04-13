@@ -136,13 +136,24 @@
             <input type="number" id="minSessions" value="0" onchange="loadUsers()">
         </div>
         <div class="filter-item">
-            <label>Date Range (Start)</label>
-            <input type="date" id="dateStart" onchange="loadUsers()">
+            <label>Level</label>
+            <select id="levelSelector" onchange="refreshCurrentView()">
+                <option value="Session">Session (Macro)</option>
+                <option value="Checkpoint">Checkpoint (Micro)</option>
+            </select>
         </div>
         <div class="filter-item">
-            <label>Date Range (End)</label>
-            <input type="date" id="dateEnd" onchange="loadUsers()">
+            <label>View Mode</label>
+            <select id="viewMode" onchange="refreshCurrentView()">
+                <option value="Raw">Raw</option>
+                <option value="Smoothed">Smoothed (MA-3)</option>
+            </select>
         </div>
+        <div class="filter-item" id="sessionSelectorContainer" style="display: none;">
+            <label>Select Session</label>
+            <select id="sessionSelector" onchange="refreshCurrentView()"></select>
+        </div>
+        <button onclick="loadUsers()" style="margin-left: 1rem; padding: 0.3rem 0.8rem; border-radius: 4px; border: 1px solid #646cff; background: transparent; color: white; cursor: pointer;">Refresh</button>
     </div>
 
     <div class="dashboard-container">
@@ -165,9 +176,18 @@
             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                 <div>
                     <h2 id="currentUserID">User: -</h2>
-                    <p id="userDetailStats">Total Sessions: - | Last Active: -</p>
+                    <div id="trendStatus" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="status-pill" style="background: #444; padding: 0.5rem; border-radius: 6px;">
+                            Current Status: <span id="currentStatus" style="font-weight: bold; color: #646cff;">-</span>
+                        </div>
+                        <div class="status-pill" style="background: #444; padding: 0.5rem; border-radius: 6px;">
+                            Long-Term Trend: <span id="longTermTrend" style="font-weight: bold; color: #4caf50;">-</span>
+                        </div>
+                    </div>
+                    <p id="userDetailStats">Total Sessions: -</p>
                 </div>
             </div>
+
             
             <div class="charts-grid">
                 <div>
@@ -189,7 +209,7 @@
                 <table id="sessionTable">
                     <thead>
                         <tr>
-                            <th>Date</th>
+                            <th>Session</th>
                             <th>Trials</th>
                             <th>Accuracy</th>
                             <th>RT (ms)</th>

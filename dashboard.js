@@ -4,34 +4,15 @@ const API_BASE = 'http://localhost:3001/api';
 let users = [];
 let charts = {};
 let selectedUserID = null;
+let currentSessions = []; // Store fetched sessions for current user
 
 async function loadUsers() {
     try {
         const response = await fetch(`${API_BASE}/users`);
         users = await response.json();
         
-        // Filter users based on min sessions and date range
         const minSessions = parseInt(document.getElementById('minSessions').value) || 0;
-        const dateStart = document.getElementById('dateStart').value;
-        const dateEnd = document.getElementById('dateEnd').value;
-        
-        const filteredUsers = users.filter(user => {
-            if (user.totalSessions < minSessions) return false;
-            
-            // Check if user has session dates
-            if (user.firstSession && user.lastSession) {
-                // Ensure we only compare the YYYY-MM-DD part
-                const firstDate = user.firstSession.slice(0, 10);
-                const lastDate = user.lastSession.slice(0, 10);
-                
-                if (dateStart && lastDate < dateStart) return false;
-                if (dateEnd && firstDate > dateEnd) return false;
-            } else if (dateStart || dateEnd) {
-                return false; // No sessions but a date filter is active
-            }
-            
-            return true;
-        });
+        const filteredUsers = users.filter(user => user.totalSessions >= minSessions);
 
         const userList = document.getElementById('userList');
         userList.innerHTML = '';
@@ -39,13 +20,8 @@ async function loadUsers() {
         filteredUsers.forEach(user => {
             const row = document.createElement('tr');
             row.id = `user-${user.userID}`;
-            if (user.userID === selectedUserID) {
-                row.classList.add('selected');
-            }
-            row.innerHTML = `
-                <td>${user.userID}</td>
-                <td>${user.totalSessions}</td>
-            `;
+            if (user.userID === selectedUserID) row.classList.add('selected');
+            row.innerHTML = `<td>${user.userID}</td><td>${user.totalSessions}</td>`;
             row.onclick = () => selectUser(user.userID);
             userList.appendChild(row);
         });
@@ -56,55 +32,157 @@ async function loadUsers() {
 
 async function selectUser(userID) {
     selectedUserID = userID;
-    
-    // UI selection state
     document.querySelectorAll('#userList tr').forEach(r => r.classList.remove('selected'));
     const selectedRow = document.getElementById(`user-${userID}`);
     if (selectedRow) selectedRow.classList.add('selected');
     
-    // Show detail view
     document.getElementById('detailView').style.display = 'block';
     document.getElementById('currentUserID').innerText = `User ID: ${userID}`;
     
+    // Reset data to prevent leakage while loading
+    currentSessions = [];
+    refreshCurrentView();
+
     try {
         const response = await fetch(`${API_BASE}/users/${userID}/sessions`);
         const sessions = await response.json();
         
-        // Ensure we are still showing the user we just fetched
+        // Guard against race conditions if user was changed during fetch
         if (selectedUserID !== userID) return;
-
-        const lastActive = sessions.length > 0 ? new Date(sessions[sessions.length - 1].session_timestamp).toLocaleString() : 'N/A';
-        document.getElementById('userDetailStats').innerText = `Total Sessions: ${sessions.length} | Last Active: ${lastActive}`;
         
-        // Populate session table
-        const sessionList = document.getElementById('sessionList');
-        sessionList.innerHTML = '';
-        sessions.forEach((s, i) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${new Date(s.session_timestamp).toLocaleString()}</td>
-                <td>${s.number_of_trials}</td>
-                <td>${(s.average_accuracy * 100).toFixed(1)}%</td>
-                <td>${Math.round(s.average_reaction_time_ms)}</td>
-                <td>${s.average_spatial_distance_error.toFixed(2)}</td>
-                <td>${s.average_pixel_distance_error.toFixed(1)}</td>
-            `;
-            sessionList.appendChild(row);
+        currentSessions = sessions;
+
+        // Populate session selector for checkpoint view
+        const sessionSelector = document.getElementById('sessionSelector');
+        sessionSelector.innerHTML = '';
+        currentSessions.forEach((s, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.innerText = `Session ${i + 1}`;
+            sessionSelector.appendChild(opt);
         });
 
-        // Update Charts (with a small timeout to ensure display:block layout is finished)
-        setTimeout(() => {
-            if (selectedUserID === userID) {
-                updateCharts(sessions);
-            }
-        }, 50);
+        document.getElementById('userDetailStats').innerText = `Total Sessions: ${currentSessions.length}`;
+        
+        refreshCurrentView();
+        updateTrends();
     } catch (err) {
         console.error(`Failed to load sessions for ${userID}:`, err);
     }
 }
 
-function updateCharts(sessions) {
-    // Clear old charts explicitly if they exist
+function refreshCurrentView() {
+    const level = document.getElementById('levelSelector').value;
+    const viewMode = document.getElementById('viewMode').value;
+    const sessionIdx = document.getElementById('sessionSelector').value;
+    
+    document.getElementById('sessionSelectorContainer').style.display = level === 'Checkpoint' ? 'block' : 'none';
+
+    let dataToDisplay = [];
+
+    if (currentSessions.length > 0) {
+        if (level === 'Session') {
+            dataToDisplay = currentSessions.map((s, i) => ({
+                label: `S${i + 1}`,
+                rt: s.avgReactionTime || s.average_reaction_time_ms || 0,
+                accuracy: (s.avgAccuracy || s.average_accuracy || 0) * 100,
+                error: s.avgErrorRate || s.average_spatial_distance_error || 0,
+                trials: s.number_of_trials || 0
+            }));
+        } else {
+            const session = currentSessions[sessionIdx];
+            if (session && session.checkpoints) {
+                dataToDisplay = session.checkpoints.map((c, i) => ({
+                    label: `C${i + 1}`,
+                    rt: c.avgReactionTime || 0,
+                    accuracy: (c.accuracy || 0) * 100,
+                    error: c.errorRate || 0,
+                    trials: c.moves || 0
+                }));
+            }
+        }
+    }
+
+    if (viewMode === 'Smoothed' && dataToDisplay.length > 0) {
+        dataToDisplay = applySmoothing(dataToDisplay);
+    }
+
+    updateTable(dataToDisplay);
+    updateCharts(dataToDisplay);
+}
+
+function applySmoothing(data) {
+    if (data.length < 3) return data;
+    const windowSize = 3;
+    return data.map((d, i) => {
+        if (i < windowSize - 1) return d;
+        const window = data.slice(i - windowSize + 1, i + 1);
+        return {
+            ...d,
+            rt: window.reduce((sum, val) => sum + val.rt, 0) / windowSize,
+            accuracy: window.reduce((sum, val) => sum + val.accuracy, 0) / windowSize,
+            error: window.reduce((sum, val) => sum + val.error, 0) / windowSize
+        };
+    });
+}
+
+function updateTable(data) {
+    const sessionList = document.getElementById('sessionList');
+    sessionList.innerHTML = '';
+    data.forEach(d => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${d.label}</td>
+            <td>${d.trials}</td>
+            <td>${d.accuracy.toFixed(1)}%</td>
+            <td>${Math.round(d.rt)}</td>
+            <td>${d.error.toFixed(2)}</td>
+            <td>-</td>
+        `;
+        sessionList.appendChild(row);
+    });
+}
+
+function updateTrends() {
+    const ltTrend = document.getElementById('longTermTrend');
+    const statusEl = document.getElementById('currentStatus');
+
+    if (currentSessions.length === 0) {
+        ltTrend.innerText = '-';
+        statusEl.innerText = '-';
+        return;
+    }
+
+    // Long-term trend
+    const accuracies = currentSessions.map(s => s.avgAccuracy || s.average_accuracy || 0);
+    if (accuracies.length >= 3) {
+        const start = accuracies.slice(0, 2).reduce((a, b) => a + b) / 2;
+        const end = accuracies.slice(-2).reduce((a, b) => a + b) / 2;
+        if (end > start + 0.05) { ltTrend.innerText = 'Improving'; ltTrend.style.color = '#4caf50'; }
+        else if (end < start - 0.05) { ltTrend.innerText = 'Declining'; ltTrend.style.color = '#f44336'; }
+        else { ltTrend.innerText = 'Stable'; ltTrend.style.color = '#aaa'; }
+    } else {
+        ltTrend.innerText = 'Stable';
+        ltTrend.style.color = '#aaa';
+    }
+
+    // Current Status (within last session)
+    const lastSession = currentSessions[currentSessions.length - 1];
+    if (lastSession.checkpoints && lastSession.checkpoints.length >= 2) {
+        const cps = lastSession.checkpoints;
+        const n = cps.length;
+        const rtTrend = (cps[n-1].avgReactionTime - cps[0].avgReactionTime) / n;
+        if (rtTrend > 50) { statusEl.innerText = 'Severe Fatigue'; statusEl.style.color = '#f44336'; }
+        else if (rtTrend > 20) { statusEl.innerText = 'Early Fatigue'; statusEl.style.color = '#ff9800'; }
+        else { statusEl.innerText = 'Stable'; statusEl.style.color = '#4caf50'; }
+    } else {
+        statusEl.innerText = 'Stable';
+        statusEl.style.color = '#4caf50';
+    }
+}
+
+function updateCharts(data) {
+    // Destroy all existing charts
     Object.keys(charts).forEach(id => {
         if (charts[id]) {
             charts[id].destroy();
@@ -112,16 +190,16 @@ function updateCharts(sessions) {
         }
     });
 
-    const labels = sessions.map((s, i) => `Session ${i + 1}`);
-    const rtData = sessions.map(s => s.average_reaction_time_ms);
-    const accuracyData = sessions.map(s => s.average_accuracy * 100);
-    const pixelErrorData = sessions.map(s => s.average_pixel_distance_error);
+    if (data.length === 0) return;
 
-    // Helper to create or update chart
-    function refreshChart(id, label, data, color) {
+    const labels = data.map(d => d.label);
+    const rtData = data.map(d => d.rt);
+    const accuracyData = data.map(d => d.accuracy);
+    const errorData = data.map(d => d.error);
+
+    function refreshChart(id, label, chartData, color) {
         const canvas = document.getElementById(id);
         if (!canvas) return;
-        
         const ctx = canvas.getContext('2d');
         charts[id] = new Chart(ctx, {
             type: 'line',
@@ -129,7 +207,7 @@ function updateCharts(sessions) {
                 labels: labels,
                 datasets: [{
                     label: label,
-                    data: data,
+                    data: chartData,
                     borderColor: color,
                     backgroundColor: `${color}33`,
                     fill: true,
@@ -138,9 +216,7 @@ function updateCharts(sessions) {
             },
             options: {
                 responsive: true,
-                animation: {
-                    duration: 400 // Slight animation for smoothness
-                },
+                animation: { duration: 400 },
                 plugins: { legend: { labels: { color: 'white' } } },
                 scales: {
                     x: { ticks: { color: 'white' }, grid: { color: '#444' } },
@@ -152,7 +228,7 @@ function updateCharts(sessions) {
 
     refreshChart('rtChart', 'Reaction Time (ms)', rtData, '#646cff');
     refreshChart('accuracyChart', 'Accuracy (%)', accuracyData, '#4caf50');
-    refreshChart('pixelErrorChart', 'Pixel Error (px)', pixelErrorData, '#f44336');
+    refreshChart('pixelErrorChart', 'Spatial Error', errorData, '#f44336');
 }
 
 async function exportData() {
@@ -172,6 +248,5 @@ async function exportData() {
     }
 }
 
-// Initial load
 loadUsers();
-setInterval(loadUsers, 5000); // Auto-refresh user list every 5 seconds
+setInterval(loadUsers, 10000);
